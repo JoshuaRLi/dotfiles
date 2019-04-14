@@ -3,7 +3,7 @@
     return 1
 }
 
-xcolors="$(xrdb -query | egrep '(^\*color|^\*background|^*foreground)')"
+xcolors="$(xrdb -query | egrep '(^\*color|^\*background|^\*foreground)')"
 
 export bg="$(printf %s "$xcolors" | grep '^\*background' | cut -f2)"
 export fg="$(printf %s "$xcolors" | grep '^\*foreground' | cut -f2)"
