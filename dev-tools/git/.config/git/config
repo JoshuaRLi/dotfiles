@@ -26,6 +26,9 @@
     default = current
     followTags = true
 
+[branch]
+    autoSetupMerge = always
+
 [color]
     ui = auto
     status = always
