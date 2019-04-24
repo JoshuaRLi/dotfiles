@@ -8,6 +8,9 @@ ctrl + Return
     urxvtc
 
 shift + Return
+    bspwm-draw-urxvt cava
+
+ctrl + shift + Return
     bspwm-draw-urxvt
 
 super + Return

@@ -2,7 +2,7 @@
 
 bspc monitor -d I II III IV V
 
-bspc config border_width            2
+bspc config border_width            0
 
 # super + mouse to resize (left-click) and swap (right-click) nodes
 bspc config pointer_modifier        mod4
