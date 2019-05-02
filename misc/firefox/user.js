@@ -21,6 +21,7 @@
 user_pref("dom.storage.enabled", true);  // DOM storage used by supercookies, but this was breaking Standard Notes
 user_pref("browser.display.use_document_fonts", 1);  // i'll just disable fonts selectively per-domain in uBlock
 user_pref("dom.event.clipboardevents.enabled", true);  // breaks google docs + fb messenger "could not display composer"
+user_pref("network.http.sendRefererHeader", 2);  // 0 or 1 breaks a lot of sites, like bandcamp/twitter/pixiv
 
 // disable DNS caching because I leave that to my local resolver
 user_pref("network.dnsCacheEntries", 0);
@@ -77,7 +78,6 @@ user_pref("browser.send_pings", false);
 user_pref("media.video_stats.enabled", false);
 user_pref("browser.cache.offline.enable", false);
 user_pref("security.ssl.disable_session_identifiers", true);
-user_pref("network.http.sendRefererHeader", 0);  // disable referer
 
 // mixed content blocking
 user_pref("security.mixed_content.block_active_content", true);
