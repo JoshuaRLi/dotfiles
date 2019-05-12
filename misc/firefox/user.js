@@ -23,16 +23,20 @@ user_pref("browser.display.use_document_fonts", 1);  // i'll just disable fonts 
 user_pref("dom.event.clipboardevents.enabled", true);  // breaks google docs + fb messenger "could not display composer"
 user_pref("network.http.sendRefererHeader", 2);  // 0 or 1 breaks a lot of sites, like bandcamp/twitter/pixiv
 
-// disable DNS caching because I leave that to my local resolver
-user_pref("network.dnsCacheEntries", 0);
-user_pref("network.dnsCacheExpiration", 0);
-
 // perf: disable smooth scroll, which eats a non-trivial amount of CPU,
 // especially if OpenGL OMTC is enabled via layers.acceleration.force-enabled
 user_pref("general.smoothScroll", false);
 
 // perf: disable service workers, i have no need for them
 user_pref("dom.serviceWorkers.enabled", false);
+
+// perf: disable UI animations
+user_pref("toolkit.cosmeticAnimations.enabled", false);
+user_pref("browser.download.animateNotifications", false);
+
+// perf: cripple multimedia
+user_pref("media.autoplay.default", 1);
+user_pref("image.animation_mode", "none");
 
 // security: various disables
 user_pref("webgl.disabled", true);
@@ -102,7 +106,7 @@ user_pref("devtools.debugger.remote-enabled", false);
 user_pref("devtools.chrome.enabled", false);
 user_pref("devtools.debugger.force-local", true);
 
-// privacy: no telemetry / reporting
+// privacy + perf: no telemetry / reporting
 user_pref("toolkit.telemetry.archive.enabled", false);
 user_pref("toolkit.telemetry.bhrPing.enabled", false);
 user_pref("toolkit.telemetry.cachedClientID", "");
@@ -118,6 +122,7 @@ user_pref("toolkit.telemetry.shutdownPingSender.enabled", false);
 user_pref("toolkit.telemetry.unified", false);
 user_pref("toolkit.telemetry.unifiedIsOptIn", false);
 user_pref("toolkit.telemetry.updatePing.enabled", false);
+user_pref("browser.ping-centre.telemetry", false);
 user_pref("datareporting.healthreport.service.enabled", false);
 user_pref("datareporting.healthreport.uploadEnabled", false);
 user_pref("datareporting.healthreport.documentServerURI", "");
@@ -140,7 +145,7 @@ user_pref("app.shield.optoutstudies.enabled", false);
 user_pref("extensions.shield-recipe-client.api_url", "");
 user_pref("extensions.shield-recipe-client.enabled", false);
 
-// privacy / perf: disable google safebrowsing, i know what i'm doing
+// privacy + perf: disable google safebrowsing, i know what i'm doing
 user_pref("browser.safebrowsing.appRepURL", "");
 user_pref("browser.safebrowsing.blockedURIs.enabled", false);
 user_pref("browser.safebrowsing.downloads.enabled", false);
@@ -198,8 +203,6 @@ user_pref("network.IDN_show_punycode", true);
 user_pref("security.pki.sha1_enforcement_level", 1);
 
 // annoyances
-user_pref("media.autoplay.default", 1);
-user_pref("media.autoplay.enabled", false);
 user_pref("dom.webnotifications.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.uitour.enabled", false);
@@ -225,7 +228,7 @@ user_pref("browser.startup.homepage", "about:blank");
 user_pref("browser.startup.page", 3);  // previous-session-tabs are restored on launch
 user_pref("services.sync.engine.passwords", false);
 user_pref("services.sync.declinedEngines", "passwords,addresses");
-user_pref("network.proxy.no_proxies_on", "localhost, 127.0.0.1, 192.168.1.0/24, 0.0.0.0, 10.0.0.0/24");
+user_pref("network.proxy.no_proxies_on", "localhost, 127.0.0.1, 192.168.1.0/24, 0.0.0.0, 10.0.0.0/24");  // blacklist LAN and special ips from SOCKS proxy
 user_pref("signon.rememberSignons", false);  // disable password store
 user_pref("browser.formfill.enable", false);
 user_pref("signon.autofillForms", false);
