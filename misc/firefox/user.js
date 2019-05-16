@@ -27,6 +27,9 @@ user_pref("network.http.sendRefererHeader", 2);  // 0 or 1 breaks a lot of sites
 // especially if OpenGL OMTC is enabled via layers.acceleration.force-enabled
 user_pref("general.smoothScroll", false);
 
+// perf: explicitly force hardware acceleration
+user_pref("layers.acceleration.force-enabled", true);
+
 // perf: disable service workers, i have no need for them
 user_pref("dom.serviceWorkers.enabled", false);
 
@@ -78,7 +81,7 @@ user_pref("javascript.options.asmjs",	false);  // until asm.js spec is stable
 
 // privacy: cripple tracking, analytics, fingerprinting
 user_pref("beacon.enabled", false);
-user_pref("browser.send_pings", false);
+user_pref("browser.send_pings", false);  // disable hyperlink ping tracking
 user_pref("media.video_stats.enabled", false);
 user_pref("browser.cache.offline.enable", false);
 user_pref("security.ssl.disable_session_identifiers", true);
@@ -166,11 +169,11 @@ user_pref("privacy.usercontext.about_newtab_segregation.enabled", true);
 // perf: save session to disk every 5 minutes instead of 15 seconds
 user_pref("browser.sessionstore.interval", 300000);
 
-// perf: disable speculative networking
-user_pref("network.http.speculative-parallel-limit", "0");
-user_pref("network.dns.disablePrefetch", true);
+// perf: disable speculative / hidden networking
+user_pref("network.http.speculative-parallel-limit", "0");  // don't speculatively bootstrap (tls handshake) connections on link hover
+user_pref("network.dns.disablePrefetch", true);  // dns prefetching
 user_pref("network.dns.disablePrefetchFromHTTPS", true);
-user_pref("network.prefetch-next", false);
+user_pref("network.prefetch-next", false);  // ignore prefetch tagged links
 user_pref("network.predictor.enabled", false);
 
 // perf: disable various other automatic networking
