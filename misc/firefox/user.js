@@ -19,7 +19,6 @@
 
 // reverted due to breakage
 user_pref("dom.storage.enabled", true);  // DOM storage used by supercookies, but this was breaking Standard Notes
-user_pref("browser.display.use_document_fonts", 1);  // i'll just disable fonts selectively per-domain in uBlock
 user_pref("dom.event.clipboardevents.enabled", true);  // breaks google docs + fb messenger "could not display composer"
 user_pref("network.http.sendRefererHeader", 2);  // 0 or 1 breaks a lot of sites, like bandcamp/twitter/pixiv
 
@@ -32,6 +31,10 @@ user_pref("layers.acceleration.force-enabled", true);
 
 // perf: disable service workers, i have no need for them
 user_pref("dom.serviceWorkers.enabled", false);
+
+// perf: disable remote fonts (use only system fonts)
+user_pref("gfx.downloadable_fonts.enabled", false);
+user_pref("browser.display.use_document_fonts", 0);
 
 // perf: disable UI animations
 user_pref("toolkit.cosmeticAnimations.enabled", false);
