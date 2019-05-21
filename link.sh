@@ -10,8 +10,9 @@ USAGE: $0 PRESET [d]
 
 PRESETS:
 base        - base, bin, and interactive shell configs
-dd          - Arch Linux "dd" configs
-tatami      - Alpine Linux "tatami" configs
+dd          - daily driver (arch linux)
+dd2         - daily driver v2 (gentoo linux)
+tatami      - tatami (alpine linux)
 work        - configs for work [currently: n/a]
 
 Pass d as the second argument if you want to unlink the dotfiles
@@ -39,6 +40,14 @@ if
         $stow -d apps gnupg cava redshift rofi-pass irssi feh
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools editorconfig git nano micro tmux sqlite
+        $stow -d shells zsh
+        ;;
+    dd2)
+        $stow base
+        $stow -d os gentoo
+        $stow -d configs dd2
+        $stow -d apps gnupg
+        $stow -d dev-tools git
         $stow -d shells zsh
         ;;
     tatami)
