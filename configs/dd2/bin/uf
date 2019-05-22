@@ -1,0 +1,61 @@
+#!/usr/bin/env sh
+
+# based on jschx/ufetch
+
+die () { printf %s\\n "ERROR: ${1}"; exit 1; }
+
+require () {
+    command -v "$1" >/dev/null 2>&1 || die "${1} not found and is required."
+}
+
+require tput
+
+ppid () { ps -o ppid= -p $PPID; }
+trim () { printf %s\\n "${1//[[:space:]]/}"; }
+# stolen from https://github.com/dylanaraps/neofetch
+mem () {
+    while IFS=":" read -r a b; do
+        case "$a" in
+            "MemTotal")
+                mem_used="$((mem_used+=${b/kB}))"; mem_total="${b/kB}" ;;
+            "Shmem")
+                mem_used="$((mem_used+=${b/kB}))" ;;
+            "MemFree" | "Buffers" | "Cached" | "SReclaimable")
+                mem_used="$((mem_used-=${b/kB}))" ;;
+        esac
+    done < /proc/meminfo
+    mem_used="$((mem_used / 1024))"
+    mem_total="$((mem_total / 1024))"
+    printf %s\\n "${mem_used} MiB / ${mem_total} MiB"
+}
+
+# info
+host="$(hostname)"
+dist='Gentoo Linux'
+kernel="$(uname -sr)"
+packages="$(ls -d /var/db/pkg/*/* | wc -l)"
+term="$(cat /proc/$(trim "$(ppid)")/comm)"
+shell="$(basename "$SHELL")"
+memory="$(mem)"
+
+bold="$(tput bold)"
+magenta="$(tput setaf 5)"
+white="$(tput setaf 7)"
+reset="$(tput sgr0)"
+lc="${reset}${bold}${magenta}"      # labels
+nc="${reset}${bold}${magenta}"      # user and hostname
+ic="${reset}${bold}${white}"        # info
+c0="${reset}${bold}${magenta}"      # first color
+c1="${reset}${magenta}"             # second color
+
+cat <<EOF
+
+${c0}    .-----.      ${nc}${USER}${ic}@${nc}${host}${reset}
+${c0}  .\`    _  \`.    ${lc}dist:      ${ic}${dist}${reset}
+${c0}  \`.   (${c1}_)   ${c0}\`.  ${lc}kernel:    ${ic}${kernel}${reset}
+${c0}    \`${c1}.        /  ${lc}pkg:       ${ic}${packages}${reset}
+${c1}   .\`       .\`   ${lc}term:      ${ic}${term}${reset}
+${c1}  /       .\`     ${lc}shell:     ${ic}${shell}${reset}
+${c1}  \____.-\`       ${lc}mem:       ${ic}${memory}${reset}
+
+EOF

@@ -8,9 +8,11 @@
 . "${XDG_CONFIG_HOME}/dotfiles/functions"
 
 # dev environments
-for f in "${XDG_CONFIG_HOME}/dotfiles/dev/"*; do
-    . "$f"
-done
+if [ -d "${XDG_CONFIG_HOME}/dotfiles/dev" ]; then
+    for f in "${XDG_CONFIG_HOME}/dotfiles/dev/"*; do
+        . "$f"
+    done
+fi
 
 . "${XDG_CONFIG_HOME}/dotfiles/os"
 
