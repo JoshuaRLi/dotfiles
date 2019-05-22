@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 fifo='/tmp/bar'
 [ -p "$fifo" ] && rm "$fifo"
@@ -9,37 +9,35 @@ timeout_mem='3s'
 timeout_cpu='3s'
 timeout_clock='15s'
 timeout_bat='1m'
-wifi_icon='ap'
-mem_icon='mem'
-cpu_icon='cpu'
-clock_icon=''
-bat_icon='bat'
 
 wifi () {
     # TODO: handle not connected
-    ssid="$(iw dev wlp2s0 link | awk '/SSID/{print $2}')"
-    printf %s\\n "1${wifi_icon} ${ssid}"
+    iw dev wlp2s0 link | awk '/SSID/{print $2}' | builtin read ssid
+    builtin printf %s\\n "1ap ${ssid}"
 }
 
 mem () {
-    mem_used="$(awk 'FNR == 1 {t = $2} FNR == 3 {printf "%2.0f\n", (t-$2)*100/t}' /proc/meminfo)"
-    printf %s\\n "2${mem_icon} ${mem_used}"
+    awk 'FNR == 1 {t = $2} FNR == 3 {printf "%2.0f\n", (t-$2)*100/t}' \
+	/proc/meminfo | builtin read mem_used
+    builtin printf %s\\n "2mem ${mem_used}"
 }
 
 cpu () {
     # largely from https://stackoverflow.com/a/26791392/5348393
-    cpu_used="$(awk -v a="$(awk '/cpu /{print $2+$4,$2+$4+$5}' /proc/stat; sleep 1)" '/cpu /{split(a,b," "); printf "%2.0f\n", 100*($2+$4-b[1])/($2+$4+$5-b[2])}' /proc/stat)"
-    printf %s\\n "3${cpu_icon} ${cpu_used}"
+    awk -v a="$(awk '/cpu /{print $2+$4,$2+$4+$5}' /proc/stat; sleep 1)" \
+	'/cpu /{split(a,b," "); printf "%2.0f\n", 100*($2+$4-b[1])/($2+$4+$5-b[2])}' \
+	/proc/stat | builtin read cpu_used
+    builtin printf %s\\n "3cpu ${cpu_used}"
 }
 
 bat () {
-    bat_cur="$(cat /sys/class/power_supply/BAT0/capacity)"
-    printf %s\\n "4${bat_icon} ${bat_cur}"
+    builtin read bat_cur < /sys/class/power_supply/BAT0/capacity
+    builtin printf %s\\n "4bat ${bat_cur}"
 }
 
 clock () {
-    time_str="$(date '+%m/%d %I:%M')"
-    printf %s\\n "5${clock_icon} ${time_str}"
+    date '+%m/%d %I:%M' | builtin read time_str
+    builtin printf %s\\n "5${time_str}"
 }
 
 while :; do wifi;       sleep $timeout_wifi;        done > "$fifo" &
@@ -56,5 +54,5 @@ while read -r line; do
         4*) bat=" ${line:1} "     ;;
         5*) clock=" ${line:1}"    ;;
     esac
-    printf %s\\n "${wifi}${mem}${cpu}${bat}${clock}"
+    builtin printf %s\\n "${wifi}${mem}${cpu}${bat}${clock}"
 done < "$fifo"
