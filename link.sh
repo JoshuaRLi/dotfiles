@@ -22,7 +22,13 @@ EOF
 }
 
 stow="stow --no-folding -vt ${HOME}"
-[ "$2" = 'd' ] && stow="stow -vDt ${HOME}"
+stow_alt="stow --no-folding -v"
+if [ "$2" = 'd' ]; then
+    stow="stow -vDt ${HOME}"
+    stow_alt="stow -vD"
+fi
+
+# TODO: dd2 assumes my gentoo-x220, will need to prompt for more specificity in future
 
 if
     ! case "$1" in
@@ -45,6 +51,7 @@ if
     dd2)
         $stow base
         $stow -d os gentoo
+        sudo $stow_alt -t / -d os gentoo-x220
         $stow -d configs dd2
         $stow -d apps gnupg
 	$stow -d dev-langs python

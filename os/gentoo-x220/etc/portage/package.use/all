@@ -1,0 +1,10 @@
+gui-wm/sway swaybar swaylock
+x11-terms/alacritty
+media-video/ffmpeg openh264 x265 libaom -network
+media-video/mpv cli drm opengl uchardet zsh-completion -xv -bluray -archive -sdl -tools -javascript
+
+# TODO: switch to firefox when it hits at least 67
+www-client/firefox clang lto hardened bindist eme-free hwaccel pulseaudio -dbus -screenshot -geckodriver system-av1 system-harfbuzz system-icu system-jpeg system-libevent system-libvpx system-sqlite system-webp
+
+dev-lang/python hardened sqlite ssl -tk -windows
+dev-vcs/git PYTHON_TARGETS: python2_7
