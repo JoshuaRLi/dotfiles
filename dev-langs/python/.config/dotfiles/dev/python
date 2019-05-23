@@ -1,6 +1,9 @@
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
 export PYENV_ROOT="${XDG_DATA_HOME}/pyenv"
 
+pathappend "${PYENV_ROOT}/bin"
+export PATH
+
 if df_require pyenv; then
     eval "$(pyenv init -)"
     usep () {
@@ -10,9 +13,3 @@ if df_require pyenv; then
 else
     df_warn 'pyenv not found'
 fi
-
-alias p='python'
-alias pip='python -m pip'
-
-pathappend "${PYENV_ROOT}/bin"
-export PATH

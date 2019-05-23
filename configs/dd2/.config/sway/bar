@@ -4,6 +4,8 @@ fifo='/tmp/bar'
 [ -p "$fifo" ] && rm "$fifo"
 mkfifo "$fifo"
 
+# TODO: cleanly exit rather than broken pipe (what signal does sway send when it exits?)
+
 timeout_wifi='5s'
 timeout_mem='3s'
 timeout_cpu='3s'
@@ -31,6 +33,7 @@ cpu () {
 }
 
 bat () {
+    # TODO: would it be worth it to detect charging status and adding +/-? 
     builtin read bat_cur < /sys/class/power_supply/BAT0/capacity
     builtin printf %s\\n "4bat ${bat_cur}"
 }

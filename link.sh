@@ -47,6 +47,7 @@ if
         $stow -d os gentoo
         $stow -d configs dd2
         $stow -d apps gnupg
+	$stow -d dev-langs python
         $stow -d dev-tools git
         $stow -d shells zsh
         ;;
