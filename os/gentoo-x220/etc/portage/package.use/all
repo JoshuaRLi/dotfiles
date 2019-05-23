@@ -1,5 +1,9 @@
+app-portage/layman git
+
 gui-wm/sway swaybar swaylock
 x11-terms/alacritty
+
+media-sound/pulseaudio -tcpd -webrtc-aec -ssl -orc
 media-video/ffmpeg openh264 x265 libaom -network
 media-video/mpv cli drm opengl uchardet zsh-completion -xv -bluray -archive -sdl -tools -javascript
 

@@ -2,10 +2,13 @@ app-admin/stow
 app-admin/sudo
 app-arch/lzop
 app-portage/gentoolkit
+app-portage/layman
 app-shells/zsh
 dev-db/sqlite
 dev-vcs/git
 gui-wm/sway
+media-fonts/hack
+media-sound/pulseaudio
 net-misc/dhcpcd
 net-wireless/iw
 net-wireless/wpa_supplicant

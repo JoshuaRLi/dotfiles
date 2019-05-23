@@ -1,2 +1,7 @@
 # required by app-admin/stow (argument)
 =app-admin/stow-2.2.2-r1 ~amd64
+# required by x11-terms/termite-13::eroen
+# required by x11-terms/termite (argument)
+=x11-libs/vte-0.48.4 ~amd64
+# required by x11-terms/termite (argument)
+=x11-terms/termite-13 ~amd64
