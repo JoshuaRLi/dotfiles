@@ -1,5 +1,6 @@
 app-admin/stow
 app-admin/sudo
+app-arch/lzop
 app-portage/gentoolkit
 app-shells/zsh
 dev-db/sqlite
