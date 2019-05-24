@@ -8,7 +8,7 @@ ctrl + Return
     urxvtc
 
 super + Return
-    . "${HOME}/bin/custom/sourceme/xcolors" && \
+    . "${HOME}/bin/xcolors" && \
     dmenu_run -b -fn 'tewi' -nb "$bg" -nf "$fg" -sb "$color1" -sf "$fg"
 
 # TODO pass for dmenu

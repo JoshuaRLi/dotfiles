@@ -1,13 +1,4 @@
-alias aa='sudo apk add'
-alias aaup='sudo apk update && sudo apk add --upgrade'
-alias ad='sudo apk del'
-alias ai='apk info -a'
-alias aii='apk -vv info|sort'
-alias au='sudo apk update'
-alias aup='sudo apk update && sudo apk upgrade --update-cache --available'
-alias ast='apk stats'
-alias agrep='apk search -v'
-alias agrepd='apk search -v --description'
+alias pkgsearch='apk search -v --description'
 
 # TODO local cache mgmt
 # https://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management

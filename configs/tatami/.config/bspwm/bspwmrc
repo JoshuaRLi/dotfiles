@@ -14,7 +14,6 @@ bspc config pointer_action3         move
 # Monocle mode imitates fullscreen, but does not try to expand behind bar
 bspc config borderless_monocle      true
 bspc config gapless_monocle         true
-bspc config paddingless_monocle     false
 
 # Focus under pointer, but do not alter cursor position
 bspc config focus_follows_pointer   true

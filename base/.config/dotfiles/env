@@ -5,7 +5,15 @@ export LANGUAGE='en_US.UTF-8'
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"
-# note: rely on the particular *nix or *bsd distribution to set runtime dir
+# note: usually, *nix distributions set runtime dir - probably a systemd thing
+# openrc doesn't, so alpine and gentoo linux (pure openrc; no consolekit) need this bootstrapped here for software that does need it
+# e.g. urxvtd, swaywm
+if [ -z "$XDG_RUNTIME_DIR" ]; then
+    XDG_RUNTIME_DIR="/tmp/${UID}-runtime-dir"
+    mkdir -p "$XDG_RUNTIME_DIR"
+    chmod 0700 "$XDG_RUNTIME_DIR"
+    export XDG_RUNTIME_DIR
+fi
 
 pathappend () {
     for DIR in "$@"; do
