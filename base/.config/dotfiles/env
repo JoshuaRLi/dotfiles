@@ -36,6 +36,7 @@ pathappend              \
     /usr/sbin           \
     /usr/local/bin      \
     /usr/local/sbin     \
+    ${HOME}/.local/bin  \
     ${HOME}/bin         \
     ${HOME}/bin/custom
 
