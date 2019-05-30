@@ -1,13 +1,6 @@
 {
-    "CtrlA": "StartOfLine",
-    "CtrlE": "EndOfLine",
     "CtrlL": "SelectLine",
     "CtrlK": "DeleteLine",
     "CtrlJ": "JumpLine",
-    "CtrlU": "Undo",
-    "CtrlLeft": "WordLeft",
-    "CtrlRight": "WordRight",
-    "AltLeft": "SelectWordLeft",
-    "AltRight": "SelectWordRight",
     "CtrlSpace": "CommandMode",
 }
