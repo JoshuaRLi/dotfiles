@@ -1,6 +1,0 @@
-session_name: work
-windows:
-  - window_name: dotfiles
-    layout: even-vertical
-    panes:
-      - cd ~/dotfiles
