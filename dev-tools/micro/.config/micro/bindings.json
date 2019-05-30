@@ -1,6 +1,10 @@
 {
-    "CtrlL": "SelectLine",
-    "CtrlK": "DeleteLine",
     "CtrlJ": "JumpLine",
     "CtrlSpace": "CommandMode",
+    "\u001b[1;5D": "StartOfLine",
+    "\u001b[1;5C": "EndOfLine",
+    "\u001b\u001b[D": "WordLeft",
+    "\u001b\u001b[C": "WordRight",
+    "\u001b\u001b[d": "SelectWordLeft",
+    "\u001b\u001b[c": "SelectWordRight",
 }
