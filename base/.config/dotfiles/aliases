@@ -1,13 +1,15 @@
+# invocation wrappers for xdg compliance
+alias tmux="tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf"
+alias sqlite3="sqlite3 -init ${XDG_CONFIG_HOME}/sqlite3/sqliterc"
+alias wget="wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts"
+
 alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
 alias al='atool -El'
 alias a='atool -Ea'
 alias ua='atool -Ex'
 alias e="$EDITOR"
 alias rd='rmdir'
 alias shred='shred -zun 10'
-alias tailf='tail -fn 100'
 alias badlinks='find . -xtype l'
 alias dmesg='dmesg -Tkw'
 alias lsblk='lsblk --output=NAME,MOUNTPOINT,TYPE,FSTYPE,LABEL,PARTLABEL,SIZE,UUID'
@@ -16,7 +18,6 @@ psi () {
 }
 alias pst='pstree -hTp'
 alias watchdir='inotifywait -e create,modify,delete -mr'
-
 alias serve='python3 -m http.server 8888'
 alias mdl='youtube-dl --ignore-config --ignore-errors --no-continue --audio-format best -x --add-metadata -o "%(title)s [%(id)s].%(ext)s"'
 
@@ -80,7 +81,7 @@ gr () {
 }
 alias grv='git remote -v'
 
-# invocation wrappers for xdg compliance
-alias tmux="tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf"
-alias sqlite3="sqlite3 -init ${XDG_CONFIG_HOME}/sqlite3/sqliterc"
-alias wget="wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts"
+alias tl='tmux ls'
+alias tn='tmux new -s'
+alias ta='tmux a -t'
+alias tk='tmux kill-session -t'
