@@ -7,4 +7,10 @@
     "\u001b\u001b[C": "WordRight",
     "\u001b\u001b[d": "SelectWordLeft",
     "\u001b\u001b[c": "SelectWordRight",
+    "\u001b[a": "SelectUp",
+    "\u001b[b": "SelectDown",
+    "\u001b[1;2A": "SelectUp",
+    "\u001b[1;2B": "SelectDown",
+    "\u001b[1;2C": "SelectRight",
+    "\u001b[1;2D": "SelectLeft",
 }
