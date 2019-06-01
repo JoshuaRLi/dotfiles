@@ -15,30 +15,27 @@ if [ -z "$XDG_RUNTIME_DIR" ]; then
     export XDG_RUNTIME_DIR
 fi
 
-pathappend () {
+pathprepend () {
     for DIR in "$@"; do
         if [ ! -d "$DIR" ]; then
-#            df_warn "pathappend: ${DIR} does not exist"
+#            df_warn "pathprepend: ${DIR} does not exist"
             continue
         fi
-        if [[ ":${PATH}:" == *":${DIR}:"* ]]; then
-#            df_warn "pathappend: ${DIR} already in PATH; skipping"
+        # not a completely correct test here, but good enough
+        # (won't be correct if PATH is empty or DIR is the last entry in path)
+        if [ ${PATH#*"${DIR}:"} != "$PATH" ]; then
+#            df_warn "pathprepend: ${DIR} already in PATH; skipping"
             continue
         fi
-        PATH="${PATH:+"${PATH}:"}${DIR}"
+        PATH="${DIR}${PATH:+":$PATH"}"
     done
 }
 
-pathappend              \
-    /bin                \
-    /sbin               \
-    /usr/bin            \
-    /usr/sbin           \
-    /usr/local/bin      \
-    /usr/local/sbin     \
-    ${HOME}/.local/bin  \
+# let distribution take care of system PATH e.g. /usr/local/bin
+pathprepend             \
     ${HOME}/bin         \
-    ${HOME}/bin/custom
+    ${HOME}/bin/custom  \
+    ${HOME}/.local/bin
 
 export PATH
 

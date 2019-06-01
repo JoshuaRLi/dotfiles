@@ -2,5 +2,5 @@ export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 # see $CARGO_HOME/config for cargo aliases
 
-pathappend "${CARGO_HOME}/bin"
+pathprepend "${CARGO_HOME}/bin"
 export PATH

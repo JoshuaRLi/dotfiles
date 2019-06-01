@@ -1,7 +1,7 @@
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
 export PYENV_ROOT="${XDG_DATA_HOME}/pyenv"
 
-pathappend "${PYENV_ROOT}/bin"
+pathprepend "${PYENV_ROOT}/bin"
 export PATH
 
 if df_require pyenv; then

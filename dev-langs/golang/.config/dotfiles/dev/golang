@@ -1,4 +1,4 @@
 # i use go modules but go get still relies on GOPATH
 export GOPATH="${XDG_DATA_HOME}/go"
-pathappend "${GOPATH}/bin"
+pathprepend "${GOPATH}/bin"
 export PATH

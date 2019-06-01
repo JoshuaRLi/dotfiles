@@ -1,6 +1,6 @@
 if df_require rbenv; then
     export RBENV_ROOT="${XDG_DATA_HOME}/rbenv"
-    pathappend "${RBENV_ROOT}/bin"
+    pathprepend "${RBENV_ROOT}/bin"
     export PATH
     eval "$(rbenv init -)"
 else
