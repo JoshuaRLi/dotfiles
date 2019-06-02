@@ -1,0 +1,13 @@
+app-admin/stow
+app-admin/sudo
+app-shells/zsh
+dev-vcs/git
+net-misc/dhcpcd
+net-wireless/iw
+net-wireless/wpa_supplicant
+sys-apps/pciutils
+sys-boot/lilo
+sys-fs/ncdu
+sys-kernel/gentoo-sources
+sys-kernel/linux-firmware
+sys-process/htop

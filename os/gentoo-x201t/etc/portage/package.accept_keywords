@@ -1,0 +1,2 @@
+# required by app-admin/stow (argument)
+=app-admin/stow-2.2.2-r1 ~amd64
