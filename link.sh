@@ -46,7 +46,6 @@ if
         $stow -d apps gnupg cava redshift rofi-pass irssi feh
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools editorconfig git nano micro tmux sqlite
-        $stow -d shells zsh
         ;;
     dd2)
         $stow base
@@ -56,7 +55,6 @@ if
         $stow -d apps gnupg
 	$stow -d dev-langs python
         $stow -d dev-tools git
-        $stow -d shells zsh
         ;;
     tatami)
         $stow base
@@ -66,18 +64,16 @@ if
         $stow -d apps gnupg irssi feh
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools editorconfig git nano micro tmux
-        $stow -d shells mksh
         ;;
     work)
         true
-#        $stow base
+        $stow base
 #        $stow --ignore='README\.md' --ignore='LICENSE' bin
 #        $stow -d os osx
 #        $stow -d apps irssi
-#        $stow -d configs work
-#        $stow -d dev-langs python
-#        $stow -d dev-tools editorconfig micro tmux
-#        $stow -d shells zsh
+        $stow -d configs work
+        $stow -d dev-langs python nodejs
+        $stow -d dev-tools editorconfig git micro tmux
         ;;
     *)
         usage
