@@ -59,9 +59,11 @@ else
     alias treea='tree -aI .git'
 fi
 
-# AFAIK neither posix grep, gnu grep, nor git grep scratch this itch as elegantly as ripgrep does
+# rgh: grep through hidden files, excluding .git/ but including gitignored files (rg default behavior)
+# AFAIK neither posix grep, gnu grep, nor git grep scratch this itch quite as elegantly as ripgrep does
+# NOTE: add -l to list filenames only then | xargs $EDITOR
 if df_require rg; then
-    alias rgh="rg -a --hidden -g '!.git'"
+    alias rgh="rg --hidden -g '!.git'"
 fi
 
 # see also ~/.gitconfig
