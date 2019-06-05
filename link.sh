@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
-die () { printf %s\\n "ERROR: ${1}"; exit 1; }
+die () { printf %s\\n "$1"; exit 1; }
 
-command -v stow > /dev/null 2>&1 || die 'You must have GNU stow installed.'
+command -v sym > /dev/null 2>&1 || die 'sym (https://github.com/joshuarli/sym-prototype) is required.'
 
 usage () {
     cat <<EOF
@@ -15,70 +15,89 @@ dd2         - daily driver v2 (gentoo linux)
 tatami      - tatami (alpine linux)
 work        - configs for work [currently: n/a]
 
-Pass d as the second argument if you want to unlink the dotfiles
+Pass 'd' as the second argument if you want to unlink the dotfiles
 belonging to the specified preset.
 EOF
     exit 1
 }
 
-stow="stow --no-folding -vt ${HOME}"
-stow_alt="stow --no-folding -v"
-if [ "$2" = 'd' ]; then
-    stow="stow -vDt ${HOME}"
-    stow_alt="stow -vD"
-fi
+sym="sym -v"
+[ "$2" = 'd' ] && sym="sym -vd"
 
-# TODO: dd2 assumes my gentoo-x220, will need to prompt for more specificity in future
+# XXX: dd2 assumes my gentoo-x230
+# TODO: when sym supports --ignore: --ignore='README\.md' --ignore='LICENSE' bin
 
-if
-    ! case "$1" in
-    base)
-        $stow base
-        $stow --ignore='README\.md' --ignore='LICENSE' bin
-        $stow -d apps gnupg
-        $stow -d shells bash mksh zsh
-        ;;
-    dd)
-        $stow base
-        $stow --ignore='README\.md' --ignore='LICENSE' bin
-        $stow -d os arch
-        $stow -d configs dd
-        $stow -d apps gnupg cava redshift rofi-pass irssi feh
-        $stow -d dev-langs python golang rust ruby nodejs
-        $stow -d dev-tools editorconfig git nano micro tmux sqlite
-        ;;
-    dd2)
-        $stow base
-        $stow -d os gentoo
-        sudo $stow_alt -t / -d os gentoo-x220
-        $stow -d configs dd2
-        $stow -d apps gnupg
-	$stow -d dev-langs python
-        $stow -d dev-tools git
-        ;;
-    tatami)
-        $stow base
-        $stow --ignore='README\.md' --ignore='LICENSE' bin
-        $stow -d os alpine
-        $stow -d configs tatami
-        $stow -d apps gnupg irssi feh
-        $stow -d dev-langs python golang rust ruby nodejs
-        $stow -d dev-tools editorconfig git nano micro tmux
-        ;;
-    work)
-        true
-        $stow base
-#        $stow --ignore='README\.md' --ignore='LICENSE' bin
-#        $stow -d os osx
-#        $stow -d apps irssi
-        $stow -d configs work
-        $stow -d dev-langs python nodejs
-        $stow -d dev-tools editorconfig git micro tmux
-        ;;
-    *)
-        usage
-        ;;
-    esac
-then
-    die "stow exited unsuccessfully; you probably have to move or delete the files stow is conflicting with."
-fi
+case "$1" in
+base)
+    $sym \
+        base        \
+        bin         \
+        apps/gnupg  \
+        shells/bash \
+        shells/mksh \
+        shells/zsh  ;;
+dd)
+    $sym \
+        base                    \
+        bin                     \
+        os/arch                 \
+        configs/dd              \
+        shells/zsh              \
+        apps/gnupg              \
+        apps/cava               \
+        apps/redshift           \
+        apps/rofi-pass          \
+        apps/irssi              \
+        apps/feh                \
+        dev-langs/python        \
+        dev-langs/golang        \
+        dev-tools/editorconfig  \
+        dev-tools/git           \
+        dev-tools/nano          \
+        dev-tools/micro         \
+        dev-tools/tmux  ;;
+dd2)
+    $sym \
+        base                    \
+        bin                     \
+        os/gentoo               \
+        configs/dd2             \
+        shells/zsh              \
+        apps/gnupg              \
+        dev-langs/python        \
+        dev-tools/git
+    sudo $sym -t / -d os/gentoo-x230 ;;
+tatami)
+    $sym \
+        base                    \
+        bin                     \
+        os/alpine               \
+        configs/tatami          \
+        shells/mksh             \
+        apps/gnupg              \
+        apps/irssi              \
+        apps/feh                \
+        dev-langs/python        \
+        dev-langs/golang        \
+        dev-tools/editorconfig  \
+        dev-tools/git           \
+        dev-tools/nano          \
+        dev-tools/micro         \
+        dev-tools/tmux  ;;
+work)
+    $sym \
+        base                    \
+        bin                     \
+        configs/work            \
+        shells/zsh              \
+        dev-langs/python        \
+        dev-langs/nodejs        \
+        dev-tools/editorconfig  \
+        dev-tools/git           \
+        dev-tools/nano          \
+        dev-tools/micro         \
+        dev-tools/tmux  ;;
+*)
+    usage
+    ;;
+esac
