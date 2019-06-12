@@ -66,7 +66,7 @@ dd2)
         apps/gnupg              \
         dev-langs/python        \
         dev-tools/git
-    sudo $sym -t / -d os/gentoo-x230 ;;
+    sudo /home/josh/bin/$sym -t / os/gentoo-x220 ;;
 tatami)
     $sym \
         base                    \
