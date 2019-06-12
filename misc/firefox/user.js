@@ -1,26 +1,29 @@
-// current: firefox 65 from arch linux repositories
+// current: firefox 67.0.1 from arch linux repositories
+
+// resources
+//  - https://spyware.neocities.org/guides/firefox.html
+//  - https://github.com/pyllyukko/user.js/
+// although i'd love to have some comprehensible, easily-searched, audited, and updateable documentation on user.js options
+// append-only is getting pretty tiring, probably 10% of this stuff is outdated
 
 // note: some people like to disable this stuff but i don't
-//    - cookies, history, bookmarks
-//    - caching
-//    - firefox sync
-//    - firefox screenshots
+//    - cookies, history, bookmarks, session restore
+//    - (most) caching
+//    - firefox sync, screenshots
 //    - container tabs
-//    - webrtc
-//    - openh264
 //    - wasm
 //    - clipboard
 //    - indexeddb (required by ublock)
 //    - svg rendering
 //    - protocol handler whitelist
 
-// note: some people like to enable this stuff but i don't
-//    - first party isolation (some breakage and i use container tabs)
-
 // reverted due to breakage
 user_pref("dom.storage.enabled", true);  // DOM storage used by supercookies, but this was breaking Standard Notes
 user_pref("dom.event.clipboardevents.enabled", true);  // breaks google docs + fb messenger "could not display composer"
 user_pref("network.http.sendRefererHeader", 2);  // 0 or 1 breaks a lot of sites, like bandcamp/twitter/pixiv
+
+// the following options are delegated to umatrix
+// user_pref("privacy.firstparty.isolate", true);
 
 // perf: disable smooth scroll, which eats a non-trivial amount of CPU,
 // especially if OpenGL OMTC is enabled via layers.acceleration.force-enabled
@@ -44,13 +47,17 @@ user_pref("browser.download.animateNotifications", false);
 user_pref("media.autoplay.default", 1);
 user_pref("image.animation_mode", "none");
 
-// security: various disables
+// security: disable various technologies
 user_pref("webgl.disabled", true);
 user_pref("pdfjs.disabled", true);
-
-// perf: disable tracking protection - this is taken care of by uBlock
-user_pref("privacy.trackingprotection.enabled", false);
-user_pref("privacy.trackingprotection.pbmode.enabled", false);
+user_pref("media.peerconnection.enabled", false);  // webrtc
+user_pref("plugin.state.flash",	0);
+user_pref("plugin.state.java", 1);
+user_pref("media.webspeech.recognition.enable", false);
+user_pref("media.webspeech.synth.enabled", false);
+user_pref("dom.vr.enabled", false);
+user_pref("camera.control.face_detection.enabled", false);
+user_pref("javascript.options.asmjs",	false);  // until asm.js spec is stable
 
 // privacy: cripple geolocation
 user_pref("geo.enabled", false);
@@ -60,7 +67,7 @@ user_pref("browser.search.region", "US");
 user_pref("browser.search.geoip.url", "");
 
 // privacy: disable various apis
-user_pref("media.navigator.enabled", false);
+user_pref("media.navigator.enabled", false);  // microphone and camera status
 user_pref("dom.enable_performance", false);
 user_pref("dom.enable_user_timing",	false);
 user_pref("dom.enable_resource_timing", false);
@@ -73,23 +80,18 @@ user_pref("dom.telephony.enabled", false);
 user_pref("dom.gamepad.enabled", false);
 user_pref("dom.vibrator.enabled", false);
 
-// security: disable various technologies
-user_pref("plugin.state.flash",	0);
-user_pref("plugin.state.java", 1);
-user_pref("media.webspeech.recognition.enable", false);
-user_pref("media.webspeech.synth.enabled", false);
-user_pref("dom.vr.enabled", false);
-user_pref("camera.control.face_detection.enabled", false);
-user_pref("javascript.options.asmjs",	false);  // until asm.js spec is stable
-
 // privacy: cripple tracking, analytics, fingerprinting
 user_pref("beacon.enabled", false);
 user_pref("browser.send_pings", false);  // disable hyperlink ping tracking
 user_pref("media.video_stats.enabled", false);
 user_pref("browser.cache.offline.enable", false);
 user_pref("security.ssl.disable_session_identifiers", true);
+user_pref("privacy.trackingprotection.enabled", false);  // redundant due to ublock, so disabling
+user_pref("privacy.trackingprotection.pbmode.enabled", true);
+user_pref("privacy.trackingprotection.fingerprinting.enabled", true);
+user_pref("privacy.trackingprotection.cryptomining.enabled", true);
 
-// mixed content blocking
+// security: mixed content blocking
 user_pref("security.mixed_content.block_active_content", true);
 user_pref("security.mixed_content.block_display_content",	true);
 
@@ -103,14 +105,6 @@ user_pref("browser.fixup.alternate.enabled", false);
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
 user_pref("browser.urlbar.trimURLs", false);
-
-// disable dev tools i don't need (webide, remote debug)
-user_pref("devtools.webide.enabled", false);
-user_pref("devtools.webide.autoinstallADBHelper", false);
-user_pref("devtools.webide.autoinstallFxdtAdapters", false);
-user_pref("devtools.debugger.remote-enabled", false);
-user_pref("devtools.chrome.enabled", false);
-user_pref("devtools.debugger.force-local", true);
 
 // privacy + perf: no telemetry / reporting
 user_pref("toolkit.telemetry.archive.enabled", false);
@@ -138,6 +132,8 @@ user_pref("browser.tabs.crashReporting.sendReport", false);
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit", false);
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false);
 user_pref("browser.crashReports.unsubmittedCheck.enabled", false);
+user_pref("security.ssl.errorReporting.enabled", false);
+user_pref("extensions.webcompat-reporter.enabled", false);
 
 // privacy: no experiments / studies
 user_pref("network.allow-experiments", false);
@@ -152,7 +148,32 @@ user_pref("extensions.shield-recipe-client.api_url", "");
 user_pref("extensions.shield-recipe-client.enabled", false);
 
 // privacy + perf: disable google safebrowsing, i know what i'm doing
-user_pref("browser.safebrowsing.appRepURL", "");
+user_pref("browser.safebrowsing.malware.enabled", false);
+user_pref("browser.safebrowsing.phishing.enabled", false);
+user_pref("browser.safebrowsing.downloads.enabled", false);
+user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
+user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
+user_pref("browser.safebrowsing.downloads.remote.block_dangerous", false);
+user_pref("browser.safebrowsing.downloads.remote.block_dangerous_host", false);
+user_pref("browser.safebrowsing.provider.google.updateURL", "");
+user_pref("browser.safebrowsing.provider.google.gethashURL", "");
+user_pref("browser.safebrowsing.provider.google4.updateURL", "");
+user_pref("browser.safebrowsing.provider.google4.gethashURL", "");
+user_pref("browser.safebrowsing.downloads.remote.enabled", false);
+user_pref("browser.safebrowsing.downloads.remote.url", "");
+user_pref("browser.safebrowsing.provider.google.reportURL", "");
+user_pref("browser.safebrowsing.reportPhishURL", "");
+user_pref("browser.safebrowsing.provider.google4.reportURL", "");
+user_pref("browser.safebrowsing.provider.google.reportMalwareMistakeURL", "");
+user_pref("browser.safebrowsing.provider.google.reportPhishMistakeURL", "");
+user_pref("browser.safebrowsing.provider.google4.reportMalwareMistakeURL", "");
+user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", "");
+user_pref("browser.safebrowsing.allowOverride", false);
+user_pref("browser.safebrowsing.provider.google4.dataSharing.enabled", false);
+user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
+user_pref("browser.safebrowsing.blockedURIs.enabled", false);
+user_pref("browser.safebrowsing.provider.mozilla.gethashURL", "");
+user_pref("browser.safebrowsing.provider.mozilla.updateURL", "");
 user_pref("browser.safebrowsing.blockedURIs.enabled", false);
 user_pref("browser.safebrowsing.downloads.enabled", false);
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
@@ -162,6 +183,7 @@ user_pref("browser.safebrowsing.malware.enabled", false);
 user_pref("browser.safebrowsing.phishing.enabled", false);
 
 // perf: blank out new tab page
+user_pref("browser.startup.homepage", "about:blank");
 user_pref("browser.newtab.preload", false);
 user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
 user_pref("browser.newtabpage.enabled", false);
@@ -169,24 +191,22 @@ user_pref("browser.newtabpage.enhanced", false);
 user_pref("browser.newtabpage.introShown", true);
 user_pref("privacy.usercontext.about_newtab_segregation.enabled", true);
 
-// perf: save session to disk every 5 minutes instead of 15 seconds
-user_pref("browser.sessionstore.interval", 300000);
-
 // perf: disable speculative / hidden networking
 user_pref("network.http.speculative-parallel-limit", "0");  // don't speculatively bootstrap (tls handshake) connections on link hover
-user_pref("network.dns.disablePrefetch", true);  // dns prefetching
+user_pref("network.dns.disablePrefetch", true);
 user_pref("network.dns.disablePrefetchFromHTTPS", true);
 user_pref("network.prefetch-next", false);  // ignore prefetch tagged links
 user_pref("network.predictor.enabled", false);
-
-// perf: disable various other automatic networking
-// https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections
-user_pref("network.captive-portal-service.enabled", false);
 user_pref("browser.aboutHomeSnippets.updateUrl", "");
 user_pref("browser.search.update", false);
+user_pref("network.connectivity-service.enabled", false);
+user_pref("browser.selfsupport.url", "");  // turn off captive portal detection
+user_pref("network.captive-portal-service.enabled", false);
+user_pref("captivedetect.canonicalURL", "");
 
 // perf: etc
 user_pref("layout.spellcheckDefault", 0);  // disable spell checking
+user_pref("browser.sessionstore.interval", 300000);  // save session to disk every 5 minutes instead of 15 seconds
 
 // privacy: etc
 user_pref("privacy.resistFingerprinting", true);
@@ -213,25 +233,48 @@ user_pref("dom.webnotifications.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.uitour.enabled", false);
 user_pref("browser.discovery.enabled", false);
+user_pref("browser.library.activity-stream.enabled", false);
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
 user_pref("browser.chrome.toolbar_tips", false);
-user_pref("browser.pocket.enabled", false);
 user_pref("extensions.pocket.enabled", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
-user_pref("browser.selfsupport.url", "");
 user_pref("extensions.getAddons.cache.enabled", false);
 user_pref("extensions.getAddons.showPane", false);
 user_pref("extensions.webservice.discoverURL", "");
-user_pref("general.warnOnAboutConfig", false);
-user_pref("browser.startup.homepage_override.mstone", "ignore");
+user_pref("general.warnOnAboutConfig", false);;
 user_pref("browser.disableResetPrompt", true);
+user_pref("dom.push.enabled", false);
+user_pref("dom.push.connection.enabled", false);
+user_pref("dom.push.serverURL", "");
+user_pref("dom.push.userAgentID", "");
+
+// extensions
+user_pref("app.update.enabled", false);  // i update firefox manually
+user_pref("app.update.auto", false);
+user_pref("app.update.service.enabled", false);
+user_pref("app.update.staging.enabled", false);
+user_pref("app.update.silent", false);
+user_pref("extensions.update.enabled", true);  // but trust my few extensions to auto update
+user_pref("extensions.blocklist.enabled", false);  // don't need handholding
+user_pref("extensions.blocklist.url", "");
+user_pref("services.blocklist.update_enabled", false);
+user_pref("extensions.systemAddon.update.enabled", false);  // and opt out of hidden/system addons (remove features profile dir as well as /usr/lib/firefox/browser/features, except screenshots@mozilla.org.xpi)
+user_pref("extensions.systemAddon.update.url", "");  // https://github.com/pyllyukko/user.js/issues/419
+user_pref("extensions.getAddons.cache.enabled", false);
+user_pref("lightweightThemes.update.enabled", false);
+user_pref("extensions.getAddons.showPane", false);
+user_pref("extensions.webservice.discoverURL", "");
+
+// disable dev tools i don't need (webide, remote debug)
+user_pref("devtools.webide.enabled", false);
+user_pref("devtools.webide.autoinstallADBHelper", false);
+user_pref("devtools.webide.autoinstallFxdtAdapters", false);
+user_pref("devtools.debugger.remote-enabled", false);
+user_pref("devtools.chrome.enabled", false);
+user_pref("devtools.debugger.force-local", true);
 
 // misc. explicit preferences
-user_pref("app.update.enabled", false);  // i update firefox manually
-user_pref("extensions.update.enabled", true);  // but trust my few extensions to auto update
-user_pref("extensions.systemAddon.update.enabled", false);
-user_pref("browser.startup.homepage", "about:blank");
 user_pref("browser.startup.page", 3);  // previous-session-tabs are restored on launch
 user_pref("services.sync.engine.passwords", false);
 user_pref("services.sync.declinedEngines", "passwords,addresses");
@@ -239,10 +282,15 @@ user_pref("network.proxy.no_proxies_on", "localhost, 127.0.0.1, 192.168.1.0/24, 
 user_pref("signon.rememberSignons", false);  // disable password store
 user_pref("browser.formfill.enable", false);
 user_pref("signon.autofillForms", false);
+user_pref("dom.forms.autocomplete.formautofill", false);
+user_pref("extensions.formautofill.addresses.enabled", false);
+user_pref("extensions.formautofill.available", "off");
+user_pref("extensions.formautofill.creditCards.enabled", false);
+user_pref("extensions.formautofill.heuristics.enabled", false);
 user_pref("browser.download.manager.retention",	0);  // disable download history
 
 // misc.
-user_pref("dom.forms.autocomplete.formautofill", false);
+user_pref("media.gmp-widevinecdm.enabled", false);  // do not play DRM-controlled html5 content
 user_pref("dom.mozTCPSocket.enabled", false);
 user_pref("network.jar.open-unsafe-types", false);
 user_pref("network.dns.blockDotOnion", true);
