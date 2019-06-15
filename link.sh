@@ -9,7 +9,7 @@ usage () {
 USAGE: $0 PRESET [d]
 
 PRESETS:
-base        - base, bin, and interactive shell configs
+base        - base (includes ~/.profile)
 dd          - daily driver (arch linux)
 dd2         - daily driver v2 (gentoo linux)
 tatami      - tatami (alpine linux)
@@ -29,13 +29,7 @@ sym="sym -v"
 
 case "$1" in
 base)
-    $sym \
-        base        \
-        bin         \
-        apps/gnupg  \
-        shells/bash \
-        shells/mksh \
-        shells/zsh  ;;
+    $sym base ;;
 dd)
     $sym \
         base                    \
