@@ -1,13 +1,16 @@
 app-admin/sudo
 app-arch/lzop
+app-portage/eix
 app-portage/gentoolkit
 app-portage/layman
 app-shells/zsh
-dev-db/sqlite
+dev-lang/rust
+dev-util/ccache
 dev-vcs/git
 gui-wm/sway
 media-fonts/hack
 media-sound/pulseaudio
+media-video/mpv
 net-misc/dhcpcd
 net-wireless/iw
 net-wireless/wpa_supplicant
@@ -18,5 +21,7 @@ sys-fs/ncdu
 sys-kernel/gentoo-sources
 sys-kernel/linux-firmware
 sys-process/htop
-x11-terms/alacritty
+virtual/cargo
+virtual/opengl
+virtual/rust
 x11-terms/termite

@@ -1,14 +1,30 @@
 app-portage/layman git
 
-gui-wm/sway swaybar swaylock
-x11-terms/alacritty
+# glamor (X) not needed on pure wayland
+# i965 doesn't use gallium
+media-libs/mesa dri3 -gallium -llvm -glamor
 
-media-sound/pulseaudio -tcpd -webrtc-aec -ssl -orc
-media-video/ffmpeg openh264 x265 libaom -network
+gui-wm/sway swaybar swaylock -swaybg -swayidle -swaymsg -swaynag
+
+media-sound/pulseaudio alsa -asyncns -bluetooth -tcpd -webrtc-aec -ssl -orc
+media-video/ffmpeg x264 -openh264 x265 libaom -network
+media-libs/x264 10bit
 media-video/mpv cli drm opengl uchardet zsh-completion -xv -bluray -archive -sdl -tools -javascript
 
 # TODO: switch to firefox when it hits at least 67
 www-client/firefox clang lto hardened bindist eme-free hwaccel pulseaudio -dbus -screenshot -geckodriver system-av1 system-harfbuzz system-icu system-jpeg system-libevent system-libvpx system-sqlite system-webp
 
 dev-lang/python hardened sqlite ssl -tk -windows
+
+# misc
+
+media-libs/libsdl2 gles
+# cripple bluetooth, required by a lot of packages so don't feel like masking
+net-wireless/bluez -mesh -obex -readline -udev
+# termite -> vte -> gtk+ -> librsvg, -vala is for global -introspection
+gnome-base/librsvg -vala
+
+
+# end of explicit specifications
+
 dev-vcs/git PYTHON_TARGETS: python2_7
