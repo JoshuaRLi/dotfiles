@@ -13,7 +13,3 @@ if [ -d "${XDG_CONFIG_HOME}/dotfiles/dev" ]; then
 fi
 
 . "${XDG_CONFIG_HOME}/dotfiles/os"
-
-if xhost > /dev/null 2>&1; then
-    . "${XDG_CONFIG_HOME}/dotfiles/x"
-fi
