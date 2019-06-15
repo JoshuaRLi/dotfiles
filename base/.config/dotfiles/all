@@ -1,9 +1,7 @@
-# source this file to apply all my dotfiles/configs for configuring a shell.
+# source this file to configure an interactive shell.
+# assumes ~/.profile has been sourced, which implies lib and env are sourced.
 
-# lib defines some useful df_* routines used by the rest of these files
-. "${XDG_CONFIG_HOME}/dotfiles/lib"
-
-. "${XDG_CONFIG_HOME}/dotfiles/env"
+. "${XDG_CONFIG_HOME}/dotfiles/prompt"
 . "${XDG_CONFIG_HOME}/dotfiles/aliases"
 . "${XDG_CONFIG_HOME}/dotfiles/functions"
 

@@ -1,0 +1,74 @@
+fg_default=$'\e[39m'
+fg_black=$'\e[30m'
+fg_red=$'\e[31m'
+fg_green=$'\e[32m'
+fg_yellow=$'\e[33m'
+fg_blue=$'\e[34m'
+fg_magenta=$'\e[35m'
+fg_cyan=$'\e[36m'
+fg_white=$'\e[97m'
+fg_default_bold=$'\e[1;39m'
+fg_black_bold=$'\e[1;30m'
+fg_red_bold=$'\e[1;31m'
+fg_green_bold=$'\e[1;32m'
+fg_yellow_bold=$'\e[1;33m'
+fg_blue_bold=$'\e[1;34m'
+fg_magenta_bold=$'\e[1;35m'
+fg_cyan_bold=$'\e[1;36m'
+fg_white_bold=$'\e[1;97m'
+reset=$'\e[0m'
+
+prompt_cur_path () {
+    [ "$PWD" = "/home/${USER}" ] && wd='~' || wd="${PWD##*/}"
+    printf %s "${fg_cyan}${wd}${reset}"
+}
+
+prompt_git_dirty () {
+    [ -z "$(git status --porcelain)" ] || printf %s '* '
+}
+
+prompt_git_prompt_info () {
+    cur_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)" || return
+    [ "$cur_branch" = HEAD ] && cur_branch='(detached HEAD)'
+    printf %s " $(prompt_git_dirty)${fg_green}${cur_branch}${reset}"
+}
+
+prompt_username () {
+    printf %s "${fg_white_bold}${USER}${reset}"
+}
+
+prompt_hostname () {
+    printf %s "${fg_red_bold}$(hostname)${reset}"
+}
+
+prompt_export_PS1 () {
+    export PS1='$(prompt_username)@$(prompt_hostname) $(prompt_cur_path)$(prompt_git_prompt_info) $ '
+}
+
+
+# zsh PS1 needs echo instead of printf since zsh printf will complain: '%{: invalid directive'
+# mksh doesn't have printf builtin, so echo is preferred
+
+prompt_cur_path_echo () {
+    [ "$PWD" = "/home/${USER}" ] && wd='~' || wd="${PWD##*/}"
+    builtin echo -e "${fg_cyan}${wd}${reset}"
+}
+
+prompt_git_prompt_info_echo () {
+    cur_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)" || return
+    [ "$cur_branch" = HEAD ] && cur_branch='(detached HEAD)'
+    builtin echo -e " $(prompt_git_dirty)${fg_green}${cur_branch}${reset}"
+}
+
+prompt_username_echo () {
+    builtin echo -e "${fg_white_bold}${USER}${reset}"
+}
+
+prompt_hostname_echo () {
+    builtin echo -e "${fg_red_bold}$(hostname)${reset}"
+}
+
+# zsh-adjusted colors are in .zshrc
+prompt_export_PS1_echo () {
+    export PS1='$(prompt_username_echo)@$(prompt_hostname_echo) $(prompt_cur_path_echo)$(prompt_git_prompt_info_echo) $ '
+}

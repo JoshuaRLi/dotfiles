@@ -1,10 +1,10 @@
-# locale
 export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
 
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"
+
 # note: usually, *nix distributions set runtime dir - probably a systemd thing
 # openrc doesn't, so alpine and gentoo linux (pure openrc; no consolekit) need this bootstrapped here for software that does need it
 # e.g. urxvtd, swaywm
@@ -14,22 +14,6 @@ if [ -z "$XDG_RUNTIME_DIR" ]; then
     chmod 0700 "$XDG_RUNTIME_DIR"
     export XDG_RUNTIME_DIR
 fi
-
-pathprepend () {
-    for DIR in "$@"; do
-        if [ ! -d "$DIR" ]; then
-#            df_warn "pathprepend: ${DIR} does not exist"
-            continue
-        fi
-        # not a completely correct test here, but good enough
-        # (won't be correct if PATH is empty or DIR is the last entry in path)
-        if [ ${PATH#*"${DIR}:"} != "$PATH" ]; then
-#            df_warn "pathprepend: ${DIR} already in PATH; skipping"
-            continue
-        fi
-        PATH="${DIR}${PATH:+":$PATH"}"
-    done
-}
 
 # let distribution take care of system PATH e.g. /usr/local/bin
 pathprepend             \

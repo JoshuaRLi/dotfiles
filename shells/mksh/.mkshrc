@@ -1,8 +1,6 @@
-export XDG_CONFIG_HOME="${HOME}/.config"
+. "${HOME}/.profile"
 . "${XDG_CONFIG_HOME}/dotfiles/all"
-
-# prompt
-df_export_PS1_echo
+prompt_export_PS1_echo
 
 # TODO mksh keybindings (mksh does not use GNU readline)
 set -o emacs  # this gets me most of the way there to my preferences

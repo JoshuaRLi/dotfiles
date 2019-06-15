@@ -1,8 +1,6 @@
-export XDG_CONFIG_HOME="${HOME}/.config"
+. "${HOME}/.profile"
 . "${XDG_CONFIG_HOME}/dotfiles/all"
-
-# prompt
-df_export_PS1
+prompt_export_PS1
 
 # configure GNU readline + keybindings
 bind -f "${XDG_CONFIG_HOME}/readline/inputrc"

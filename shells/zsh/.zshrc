@@ -1,15 +1,15 @@
-export XDG_CONFIG_HOME="${HOME}/.config"
+. "${HOME}/.profile"
 . "${XDG_CONFIG_HOME}/dotfiles/all"
 
 # prompt
 # need to redefine colors so zsh knows the control characters don't need to show up in terminal
-df_c_fg_green='%{\e[32m%}'
-df_c_fg_cyan='%{\e[36m%}'
-df_c_fg_red_bold='%{\e[1;31m%}'
-df_c_fg_white_bold='%{\e[1;97m%}'
-df_c_reset='%{\e[0m%}'
+fg_green='%{\e[32m%}'
+fg_cyan='%{\e[36m%}'
+fg_red_bold='%{\e[1;31m%}'
+fg_white_bold='%{\e[1;97m%}'
+reset='%{\e[0m%}'
 setopt prompt_subst
-df_export_PS1_echo
+prompt_export_PS1_echo
 
 # keybindings
 bindkey -e
