@@ -18,13 +18,13 @@ fg_red_bold=$'\e[1;31m'
 fg_white_bold=$'\e[1;97m'
 reset=$'\e[0m'
 
+prompt_git_dirty () {
+    git diff --quiet --ignore-submodules HEAD || printf %s '* '
+}
+
 prompt_cur_path () {
     [ "$PWD" = "/home/${USER}" ] && wd='~' || wd="${PWD##*/}"
     printf %s "${fg_cyan}${wd}${reset}"
-}
-
-prompt_git_dirty () {
-    git diff --quiet --ignore-submodules HEAD || printf %s '* '
 }
 
 prompt_git_prompt_info () {
@@ -33,16 +33,9 @@ prompt_git_prompt_info () {
     printf %s " $(prompt_git_dirty)${fg_green}${cur_branch}${reset}"
 }
 
-prompt_username () {
-    printf %s "${fg_white_bold}${USER}${reset}"
-}
-
-prompt_hostname () {
-    printf %s "${fg_red_bold}$(hostname)${reset}"
-}
-
 prompt_export_PS1 () {
-    export PS1='$(prompt_username)@$(prompt_hostname) $(prompt_cur_path)$(prompt_git_prompt_info) $ '
+    read HOSTNAME < /proc/sys/kernel/hostname
+    export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_cur_path)$(prompt_git_prompt_info) $ '
 }
 
 
@@ -61,14 +54,7 @@ prompt_git_prompt_info_echo () {
     builtin echo -e " $(prompt_git_dirty)${fg_green}${cur_branch}${reset}"
 }
 
-prompt_username_echo () {
-    builtin echo -e "${fg_white_bold}${USER}${reset}"
-}
-
-prompt_hostname_echo () {
-    builtin echo -e "${fg_red_bold}$(hostname)${reset}"
-}
-
 prompt_export_PS1_echo () {
-    export PS1='$(prompt_username_echo)@$(prompt_hostname_echo) $(prompt_cur_path_echo)$(prompt_git_prompt_info_echo) $ '
+    read HOSTNAME < /proc/sys/kernel/hostname
+    export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_cur_path_echo)$(prompt_git_prompt_info_echo) $ '
 }
