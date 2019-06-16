@@ -1,15 +1,13 @@
-. "${HOME}/.profile"
 . "${XDG_CONFIG_HOME}/dotfiles/all"
 
 # prompt
-# need to redefine colors so zsh knows the control characters don't need to show up in terminal
-fg_green='%{\e[32m%}'
-fg_cyan='%{\e[36m%}'
-fg_red_bold='%{\e[1;31m%}'
-fg_white_bold='%{\e[1;97m%}'
-reset='%{\e[0m%}'
+fg_green=$'%{\e[32m%}'
+fg_cyan=$'%{\e[36m%}'
+fg_red_bold=$'%{\e[1;31m%}'
+fg_white_bold=$'%{\e[1;97m%}'
+reset=$'%{\e[0m%}'
 setopt prompt_subst
-prompt_export_PS1_echo
+prompt_alt
 
 # keybindings
 bindkey -e
@@ -51,12 +49,10 @@ bindkey '^ ' magic-space            # control-space to bypass completion
 bindkey -M isearch ' ' magic-space  # normal space during history searches
 
 # history
-#alias history='fc -l'
 [ ! -d "${XDG_DATA_HOME}/zsh" ] && mkdir "${XDG_DATA_HOME}/zsh"
 export HISTFILE="${XDG_DATA_HOME}/zsh/history"
 export HISTSIZE=1000000
 export SAVEHIST="$HISTSIZE"
-export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:ls:history"
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY

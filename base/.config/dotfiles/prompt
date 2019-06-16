@@ -30,7 +30,7 @@ prompt_git () {
     printf %s " ${fg_green}${cur_branch}${reset}"
 }
 
-prompt_export_PS1 () {
+prompt () {
     read HOSTNAME < /proc/sys/kernel/hostname
     export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_pwd)$(prompt_git) $ '
 }
@@ -51,7 +51,7 @@ prompt_git_echo () {
     echo -e " ${fg_green}${cur_branch}${reset}"
 }
 
-prompt_export_PS1_echo () {
+prompt_alt () {
     read HOSTNAME < /proc/sys/kernel/hostname
     export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_pwd_echo)$(prompt_git_echo) $ '
 }
