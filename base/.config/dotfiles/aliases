@@ -4,6 +4,10 @@ alias sqlite3="sqlite3 -init ${XDG_CONFIG_HOME}/sqlite3/sqliterc"
 alias wget="wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts"
 
 alias ..='cd ..'
+alias ls='ls -F --color=auto'
+alias l='ls -lph'
+alias ll='ls -Alph'
+alias llt='ll -rt'
 alias al='atool -El'
 alias a='atool -Ea'
 alias ua='atool -Ex'
@@ -25,19 +29,6 @@ if df_require tput; then
     alias c='tput reset'
 else
     alias c='clear'
-fi
-
-if df_require exa; then
-    alias ls='exa'
-    alias l='exa -Fl'
-    alias ll='exa -Fla'
-    alias llt='exa -Flar --sort=modified'
-    alias lll='exa -FlbghiSm --time-style=long-iso --git'
-else
-    alias ls='ls -F --color=always'
-    alias l='ls -lph'
-    alias ll='ls -Alph'
-    alias llt='ll -rt'
 fi
 
 if df_require ncdu; then

@@ -12,4 +12,5 @@ if [ -d "${XDG_CONFIG_HOME}/dotfiles/dev" ]; then
     done
 fi
 
-. "${XDG_CONFIG_HOME}/dotfiles/os"
+[ -f "${XDG_CONFIG_HOME}/dotfiles/os" ] && . "${XDG_CONFIG_HOME}/dotfiles/os"
+[ -f "${XDG_CONFIG_HOME}/dotfiles/specific" ] && . "${XDG_CONFIG_HOME}/dotfiles/specific"
