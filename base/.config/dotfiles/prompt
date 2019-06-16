@@ -32,6 +32,11 @@ prompt_git () {
 
 prompt () {
     read HOSTNAME < /proc/sys/kernel/hostname
+    export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_pwd) $ '
+}
+
+devprompt () {
+    read HOSTNAME < /proc/sys/kernel/hostname
     export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_pwd)$(prompt_git) $ '
 }
 
@@ -52,6 +57,11 @@ prompt_git_echo () {
 }
 
 prompt_alt () {
+    read HOSTNAME < /proc/sys/kernel/hostname
+    export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_pwd_echo) $ '
+}
+
+devprompt_alt () {
     read HOSTNAME < /proc/sys/kernel/hostname
     export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_pwd_echo)$(prompt_git_echo) $ '
 }
