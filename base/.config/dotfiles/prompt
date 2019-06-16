@@ -24,7 +24,7 @@ prompt_cur_path () {
 }
 
 prompt_git_dirty () {
-    [ -z "$(git status --porcelain -uno)" ] || printf %s '* '
+    git diff --quiet --ignore-submodules HEAD || printf %s '* '
 }
 
 prompt_git_prompt_info () {
