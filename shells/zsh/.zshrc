@@ -7,7 +7,7 @@ fg_red_bold=$'%{\e[1;31m%}'
 fg_white_bold=$'%{\e[1;97m%}'
 reset=$'%{\e[0m%}'
 setopt prompt_subst
-prompt_alt
+prompt
 
 # keybindings
 bindkey -e

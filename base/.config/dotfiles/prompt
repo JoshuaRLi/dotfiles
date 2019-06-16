@@ -39,29 +39,3 @@ devprompt () {
     read HOSTNAME < /proc/sys/kernel/hostname
     export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_pwd)$(prompt_git) $ '
 }
-
-# zsh PS1 needs literal escape sequence (%{...%}) colors, and echo instead of printf since '%{: invalid directive'
-# the zsh specific colors are overridden in .zshrc
-# also, mksh doesn't have printf builtin, so echo is preferred
-
-prompt_pwd_echo () {
-    [ "$PWD" = "/home/${USER}" ] && wd='~' || wd="${PWD##*/}"
-    echo -e "${fg_cyan}${wd}${reset}"
-}
-
-prompt_git_echo () {
-    cur_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)" || return
-    git diff --quiet --ignore-submodules HEAD || echo -n ' *'
-    [ "$cur_branch" = HEAD ] && cur_branch='(detached HEAD)'
-    echo -e " ${fg_green}${cur_branch}${reset}"
-}
-
-prompt_alt () {
-    read HOSTNAME < /proc/sys/kernel/hostname
-    export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_pwd_echo) $ '
-}
-
-devprompt_alt () {
-    read HOSTNAME < /proc/sys/kernel/hostname
-    export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_pwd_echo)$(prompt_git_echo) $ '
-}
