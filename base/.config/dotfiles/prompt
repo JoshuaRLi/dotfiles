@@ -41,14 +41,14 @@ prompt_export_PS1 () {
 
 prompt_pwd_echo () {
     [ "$PWD" = "/home/${USER}" ] && wd='~' || wd="${PWD##*/}"
-    builtin echo -e "${fg_cyan}${wd}${reset}"
+    echo -e "${fg_cyan}${wd}${reset}"
 }
 
 prompt_git_echo () {
     cur_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)" || return
     git diff --quiet --ignore-submodules HEAD || echo -n ' *'
     [ "$cur_branch" = HEAD ] && cur_branch='(detached HEAD)'
-    builtin echo -e " ${fg_green}${cur_branch}${reset}"
+    echo -e " ${fg_green}${cur_branch}${reset}"
 }
 
 prompt_export_PS1_echo () {
