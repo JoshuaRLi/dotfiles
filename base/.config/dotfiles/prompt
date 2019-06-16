@@ -18,43 +18,40 @@ fg_red_bold=$'\e[1;31m'
 fg_white_bold=$'\e[1;97m'
 reset=$'\e[0m'
 
-prompt_git_dirty () {
-    git diff --quiet --ignore-submodules HEAD || printf %s '* '
-}
-
-prompt_cur_path () {
+prompt_pwd () {
     [ "$PWD" = "/home/${USER}" ] && wd='~' || wd="${PWD##*/}"
     printf %s "${fg_cyan}${wd}${reset}"
 }
 
-prompt_git_prompt_info () {
+prompt_git () {
     cur_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)" || return
+    git diff --quiet --ignore-submodules HEAD || printf %s ' *'
     [ "$cur_branch" = HEAD ] && cur_branch='(detached HEAD)'
-    printf %s " $(prompt_git_dirty)${fg_green}${cur_branch}${reset}"
+    printf %s " ${fg_green}${cur_branch}${reset}"
 }
 
 prompt_export_PS1 () {
     read HOSTNAME < /proc/sys/kernel/hostname
-    export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_cur_path)$(prompt_git_prompt_info) $ '
+    export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_pwd)$(prompt_git) $ '
 }
-
 
 # zsh PS1 needs literal escape sequence (%{...%}) colors, and echo instead of printf since '%{: invalid directive'
 # the zsh specific colors are overridden in .zshrc
 # also, mksh doesn't have printf builtin, so echo is preferred
 
-prompt_cur_path_echo () {
+prompt_pwd_echo () {
     [ "$PWD" = "/home/${USER}" ] && wd='~' || wd="${PWD##*/}"
     builtin echo -e "${fg_cyan}${wd}${reset}"
 }
 
-prompt_git_prompt_info_echo () {
+prompt_git_echo () {
     cur_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)" || return
+    git diff --quiet --ignore-submodules HEAD || echo -n ' *'
     [ "$cur_branch" = HEAD ] && cur_branch='(detached HEAD)'
-    builtin echo -e " $(prompt_git_dirty)${fg_green}${cur_branch}${reset}"
+    builtin echo -e " ${fg_green}${cur_branch}${reset}"
 }
 
 prompt_export_PS1_echo () {
     read HOSTNAME < /proc/sys/kernel/hostname
-    export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_cur_path_echo)$(prompt_git_prompt_info_echo) $ '
+    export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_pwd_echo)$(prompt_git_echo) $ '
 }
