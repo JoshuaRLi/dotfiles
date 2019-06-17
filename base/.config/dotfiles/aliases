@@ -3,11 +3,13 @@ alias tmux="tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf"
 alias sqlite3="sqlite3 -init ${XDG_CONFIG_HOME}/sqlite3/sqliterc"
 alias wget="wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts"
 
+alias c='tput reset'
 alias ..='cd ..'
 alias ls='ls -F --color=auto'
 alias l='ls -lph'
 alias ll='ls -Alph'
 alias llt='ll -rt'
+alias treea='tree -aI .git'
 alias al='atool -El'
 alias a='atool -Ea'
 alias ua='atool -Ex'
@@ -25,12 +27,6 @@ alias watchdir='inotifywait -e create,modify,delete -mr'
 alias serve='python3 -m http.server 8888'
 alias mdl='youtube-dl --ignore-config --ignore-errors --no-continue --audio-format best -x --add-metadata -o "%(title)s [%(id)s].%(ext)s"'
 
-if df_require tput; then
-    alias c='tput reset'
-else
-    alias c='clear'
-fi
-
 if df_require ncdu; then
     alias du='ncdu -rr'
 else
@@ -41,13 +37,6 @@ if df_require dfc; then
     alias df='dfc -p /dev,-tmpfs'
 else
     alias df='df --exclude-type=tmpfs -h'
-fi
-
-if df_require tree; then
-    alias tree='exa --tree'
-    alias treea='exa --tree -aI .git'
-else
-    alias treea='tree -aI .git'
 fi
 
 # rgh: grep through hidden files, excluding .git/ but including gitignored files (rg default behavior)
