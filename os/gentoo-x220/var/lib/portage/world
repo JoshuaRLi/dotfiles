@@ -1,5 +1,6 @@
 app-admin/sudo
 app-arch/lzop
+app-portage/cpuid2cpuflags
 app-portage/eix
 app-portage/gentoolkit
 app-portage/layman
@@ -14,14 +15,15 @@ media-video/mpv
 net-misc/dhcpcd
 net-wireless/iw
 net-wireless/wpa_supplicant
+sys-apps/flashrom
 sys-apps/pciutils
+sys-auth/consolekit
 sys-boot/lilo
 sys-fs/dfc
+sys-fs/eudev
 sys-fs/ncdu
 sys-kernel/gentoo-sources
 sys-kernel/linux-firmware
 sys-process/htop
-virtual/cargo
-virtual/opengl
-virtual/rust
+www-client/firefox
 x11-terms/termite
