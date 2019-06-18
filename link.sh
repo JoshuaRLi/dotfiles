@@ -59,7 +59,8 @@ dd2)
         shells/zsh              \
         apps/gnupg              \
         dev-langs/python        \
-        dev-tools/git
+        dev-tools/git		\
+	dev-tools/tmux
     sudo /home/josh/bin/$sym -t / os/gentoo-x220 ;;
 tatami)
     $sym \

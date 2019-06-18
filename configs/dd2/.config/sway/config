@@ -5,9 +5,12 @@ default_floating_border none
 
 output * bg #000000 solid_color
 
-# TODO: wayland-native launcher, swayidle, sway-input
-
 bindsym $mod+Return exec termite
+
+# TODO: pass integration might require standalone script
+bindsym Shift+Return exec termite --name=launcher -e "bash -c 'compgen -c | fzy | xargs -r swaymsg -t command exec'"
+for_window [app_id="^launcher$"] floating enable
+
 # TODO: text-based wayland locker, sort of like physlock, and also the ability to lock all ttys would be nice
 # TODO: in the meantime, provide a simple locked text as an image
 bindsym $mod+l exec swaylock -efuc '#000000'

@@ -1,4 +1,4 @@
-app-portage/layman git
+app-portage/layman sync-plugin-portage git
 
 # glamor (X) not needed on pure wayland
 # i965 doesn't use gallium
@@ -26,6 +26,7 @@ sys-apps/flashrom internal internal_dmi ch341a_spi -atapromise -atavia -buspirat
 # various required python_targets 2.7 (i don't include 2.7 globally)
 dev-vcs/git PYTHON_TARGETS: python2_7
 sys-devel/clang LLVM_TARGETS: X86 -BPF -AMDGPU -NVPTX PYTHON_TARGETS: python2_7
+app-text/asciidoc PYTHON_SINGLE_TARGET: python2_7 PYTHON_TARGETS: python2_7
 
 # misc
 
