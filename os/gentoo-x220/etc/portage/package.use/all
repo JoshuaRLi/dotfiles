@@ -10,6 +10,7 @@ gui-wm/sway swaybar swaylock swaybg swaymsg -swayidle -swaynag
 media-video/ffmpeg vaapi x264 -openh264 x265 libaom -network
 media-libs/x264 10bit
 media-video/mpv cli libass vaapi drm egl opengl uchardet zsh-completion -xv -bluray -archive -sdl -tools -javascript
+# media-video/vlc -a52 -dts -dvbpsi -dvd encode ffmpeg flac -gcrypt jpeg -libnotify libsamplerate mad mp3 mpeg -ncurses ogg png pulseaudio -ssl -svg truetype -udev vorbis x264
 
 # note: enable pgo on x230
 www-client/firefox clang lto hardened bindist eme-free hwaccel pulseaudio screenshot -startup-notification -gmp-autoupdate -dbus -wifi -geckodriver system-av1 system-harfbuzz system-icu system-jpeg system-libevent system-libvpx system-sqlite system-webp
@@ -31,6 +32,7 @@ sys-devel/clang LLVM_TARGETS: X86 -BPF -AMDGPU -NVPTX PYTHON_TARGETS: python2_7
 # firefox requires nodejs to build, but i don't want or need npm with it
 net-libs/nodejs -npm -snapshot -ssl PYTHON_TARGETS: python2_7
 
+media-libs/libsdl -joystick
 media-libs/libsdl2 gles
 
 # cripple bluetooth, required by a lot of packages so don't feel like masking
@@ -75,3 +77,8 @@ gnome-base/librsvg -vala
 =media-libs/libvpx-1.7.0 postproc
 # required by sys-devel/llvmgold-7::gentoo
 >=sys-devel/llvm-7.1.0 gold
+
+# required by media-video/vlc-3.0.6-r1::gentoo
+# required by media-video/vlc (argument)
+#>=sys-libs/zlib-1.2.11-r2 minizip
+

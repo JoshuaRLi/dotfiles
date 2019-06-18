@@ -12,6 +12,7 @@ gui-wm/sway
 media-fonts/hack
 media-sound/pulseaudio
 media-video/mpv
+#media-video/vlc
 net-misc/dhcpcd
 net-wireless/iw
 net-wireless/wpa_supplicant
