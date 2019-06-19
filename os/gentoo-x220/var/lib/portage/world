@@ -14,6 +14,8 @@ dev-util/ccache
 dev-vcs/git
 gui-wm/sway
 media-fonts/hack
+media-gfx/grim
+media-gfx/slurp
 media-sound/pulseaudio
 media-video/mpv
 net-misc/dhcpcd

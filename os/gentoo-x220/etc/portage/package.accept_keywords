@@ -3,6 +3,9 @@
 =www-client/firefox-67.0.2 ~amd64
 =sys-apps/flashrom-1.0 ~amd64
 
+=media-gfx/grim-1.2.0 ~amd64
+=media-gfx/slurp-1.2.0 ~amd64
+
 # required by x11-terms/termite-13::eroen
 # required by x11-terms/termite (argument)
 =x11-libs/vte-0.48.4 ~amd64
