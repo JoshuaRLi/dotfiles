@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+die () { >&2 printf %s\\n "$1"; exit 1; }
+
+[ "$#" -lt 1 ] && die "usage: ${0} path/to/image-album.tar"
+
+>/dev/null command -v tar || die 'tar not found'
+>/dev/null command -v feh || die 'feh not found'
+
+d="$(mktemp -d)" || die 'mktemp failed'
+trap "rm -rf ${d}" INT TERM QUIT
+
+# assumption about strip-components=1 is common case with how i tar cf image albums
+tar -C "$d" --strip-components=1 -xf "$1" 2>/dev/null || die 'tar extract failed.'
+feh --fullscreen -d --sort filename --version-sort "$d"

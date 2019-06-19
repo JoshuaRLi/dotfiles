@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+die () { >&2 printf %s\\n "$1"; exit 1; }
+
+>/dev/null command -v slop || die 'slop not found'
+
+sel="$(slop -f '%x %y %w %h' -q)"
+
+read -r X Y W H <<EOF
+$sel
+EOF
+
+# w/h in px need to be converted to columns/rows
+# for now, this is hardcoded for 1920x1080 res
+W=$((W / 8))
+H=$((H / 16))
+
+bspc rule -a URxvt -o state=floating
+
+if [ -z "$1" ]; then
+    urxvtc --geometry "${W}x${H}+${X}+${Y}"
+else
+    urxvtc --geometry "${W}x${H}+${X}+${Y}" -e "$1"
+fi

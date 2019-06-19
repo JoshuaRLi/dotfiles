@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+
+die () { >&2 printf %s\\n "$1"; exit 1; }
+
+>/dev/null command -v xdotool || die 'xdotool not found'
+
+# -f alsa \
+# -i default \
+
+mkdir -p "${HOME}/Screencasts"
+
+# TODO https://trac.ffmpeg.org/wiki/Encode/H.265
+
+ffmpeg -loglevel 16 \
+    -f x11grab \
+    -framerate 30 \
+    -s "$(xdotool getdisplaygeometry | sed 's/ /x/')" \
+    -i ":0.0" \
+    -c:v h264 \
+    -preset fast \
+    -crf 17 \
+    -pix_fmt yuv420p \
+    "${HOME}/Screencasts/$(date +%Y-%m-%d-%H-%M-%S).mp4"
