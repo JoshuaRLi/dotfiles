@@ -1,5 +1,3 @@
-# see also: https://github.com/JoshuaRLi/bin
-
 # enforce argc and display usage when violated.
 usage () {
     if [ "$1" -lt "$2" ]; then
@@ -58,6 +56,12 @@ sshnewrsa () {
 ecount () {
     require fd || return $?
     fd -tf -x echo {/} | awk -F. 'NF > 1 {print tolower($NF)}' | sort | uniq -c | sort -n
+}
+
+esize () {
+    require fd || return $?
+    usage $# 1 'Reports total disk space taken up by files with the extension, in the current directory.' "$0 extension" || return $?
+    fd -e "$1" -0 | xargs -0 du -hc | awk 'END { print $1 }'
 }
 
 # music downloader. used to be aliased to the youtube-dl invocation but i now like to reencode to 96k opus for size savings
