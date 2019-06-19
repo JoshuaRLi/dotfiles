@@ -52,6 +52,19 @@ sshnewrsa () {
     chmod 444 -v "${HOME}/.ssh/${1}.pub"
 }
 
+# this is extremely naive, will probably remove after i'm more experienced with making patches
+mkpatch () {
+    require diff || return $?
+    usage $# 1 'Opens FILE with your EDITOR and generates a same-file patch without timestamp.' \
+        "$0 FILE" || return $?
+    [ -z "$EDITOR" ] && die '$EDITOR is not set.'
+    tmp="$(mktemp)" || die 'mktemp failed'
+    cp "$1" "$tmp"
+    $EDITOR "$tmp"
+    diff -ua "$1" "$tmp" | sed "s|${tmp}|${1}|" | awk '{ if (NR==1 || NR==2) { print $1,$2 } else { print } };' > "${1}.patch"
+    rm "$tmp"
+}
+
 # extension counter
 ecount () {
     require fd || return $?
@@ -60,7 +73,8 @@ ecount () {
 
 esize () {
     require fd || return $?
-    usage $# 1 'Reports total disk space taken up by files with the extension, in the current directory.' "$0 extension" || return $?
+    usage $# 1 'Reports total disk space taken up by files with the extension, in the current directory.' \
+        "$0 extension" || return $?
     fd -e "$1" -0 | xargs -0 du -hc | awk 'END { print $1 }'
 }
 
@@ -69,7 +83,8 @@ esize () {
 mdl () {
     require youtube-dl || return $?
     require ffmpeg || return $?
-    usage $# 1 '' "$0 music-url" || return $?
+    usage $# 1 'youtube-dl + ffmpeg music downloader for re-encoding youtube-dl best audio to 96k opus.' \
+        "$0 music-url" || return $?
     d="$(mktemp -d)" || die 'mktemp failed'
     youtube-dl --ignore-config --ignore-errors --no-continue --audio-format best -x --add-metadata -o "${d}/%(title)s [%(id)s].%(ext)s" "$1"
     f="$(ls "$d")"
