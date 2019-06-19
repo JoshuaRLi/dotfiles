@@ -53,3 +53,8 @@ sshnewrsa () {
     chmod 400 -v "${HOME}/.ssh/${1}"
     chmod 444 -v "${HOME}/.ssh/${1}.pub"
 }
+
+ecount () {
+    require fd || return $?
+    fd -tf -x echo {/} | awk -F. 'NF > 1 {print tolower($NF)}' | sort | uniq -c | sort -n
+}
