@@ -54,7 +54,21 @@ sshnewrsa () {
     chmod 444 -v "${HOME}/.ssh/${1}.pub"
 }
 
+# extension counter
 ecount () {
     require fd || return $?
     fd -tf -x echo {/} | awk -F. 'NF > 1 {print tolower($NF)}' | sort | uniq -c | sort -n
+}
+
+# music downloader. used to be aliased to the youtube-dl invocation but i now like to reencode to 96k opus for size savings
+# ffmpeg will copy the audio stream through the codec, leaving youtube-dl inserted metadata intact
+mdl () {
+    require youtube-dl || return $?
+    require ffmpeg || return $?
+    usage $# 1 '' "$0 music-url" || return $?
+    d="$(mktemp -d)" || die 'mktemp failed'
+    youtube-dl --ignore-config --ignore-errors --no-continue --audio-format best -x --add-metadata -o "${d}/%(title)s [%(id)s].%(ext)s" "$1"
+    f="$(ls "$d")"
+    ffmpeg -i "${d}/${f}" -c:a libopus -b:a 96K "${f%.*}.opus"
+    rm -r "$d"
 }

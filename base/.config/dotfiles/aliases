@@ -25,7 +25,6 @@ psi () {
 alias pst='pstree -hTp'
 alias watchdir='inotifywait -e create,modify,delete -mr'
 alias serve='python3 -m http.server 8888'
-alias mdl='youtube-dl --ignore-config --ignore-errors --no-continue --audio-format best -x --add-metadata -o "%(title)s [%(id)s].%(ext)s"'
 
 if df_require ncdu; then
     alias du='ncdu -rr'
