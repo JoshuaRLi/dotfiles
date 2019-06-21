@@ -1,14 +1,14 @@
 xwayland disable
-
 set $mod Mod4
-
 default_border none
 default_floating_border none
-
 output * bg #000000 solid_color
 
-bindsym $mod+Return exec termite
+exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
+exec mako
+bindsym $mod+space exec makoctl dismiss
 
+bindsym $mod+Return exec termite
 # TODO: pass integration might require standalone script
 bindsym Shift+Return exec termite --name=launcher -e 'zsh -c "whence -pm \* | fzy | xargs -r swaymsg -t command exec"'
 for_window [app_id="^launcher$"] floating enable

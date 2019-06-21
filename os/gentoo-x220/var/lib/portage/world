@@ -12,6 +12,7 @@ app-text/tree
 dev-lang/rust
 dev-util/ccache
 dev-vcs/git
+gui-apps/mako
 gui-wm/sway
 media-fonts/hack
 media-gfx/grim
@@ -25,6 +26,7 @@ sys-apps/flashrom
 sys-apps/pciutils
 sys-apps/udevil
 sys-auth/consolekit
+sys-auth/elogind
 sys-boot/lilo
 sys-fs/dfc
 sys-fs/eudev
@@ -34,4 +36,5 @@ sys-kernel/linux-firmware
 sys-power/powertop
 sys-process/htop
 www-client/firefox
+x11-misc/tinynotify-send
 x11-terms/termite

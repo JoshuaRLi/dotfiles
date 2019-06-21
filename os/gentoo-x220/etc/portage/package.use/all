@@ -6,6 +6,7 @@ media-libs/mesa dri3 -gallium -llvm -glamor
 x11-libs/libva drm utils -opengl
 
 gui-wm/sway swaybar swaylock swaybg swaymsg -swayidle -swaynag
+gui-apps/mako -icons
 
 media-video/ffmpeg vaapi x264 -openh264 x265 libaom -network
 media-libs/x264 10bit
@@ -83,3 +84,6 @@ gnome-base/librsvg -vala
 # required by media-video/vlc (argument)
 #>=sys-libs/zlib-1.2.11-r2 minizip
 
+# required by gui-apps/mako-1.3::gentoo
+# required by gui-apps/mako (argument)
+>=sys-apps/dbus-1.12.12-r1 user-session
