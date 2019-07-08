@@ -78,16 +78,27 @@ esize () {
     fd -e "$1" -0 | xargs -0 du -hc | awk 'END { print $1 }'
 }
 
-# music downloader. used to be aliased to the youtube-dl invocation but i now like to reencode to 96k opus for size savings
-# ffmpeg will copy the audio stream through the codec, leaving youtube-dl inserted metadata intact
 mdl () {
     require youtube-dl || return $?
     require ffmpeg || return $?
-    usage $# 1 'youtube-dl + ffmpeg music downloader for re-encoding youtube-dl best audio to 96k opus.' \
+    usage $# 1 'youtube-dl + ffmpeg (opus 96k reencode) music downloader' \
         "$0 music-url" || return $?
-    d="$(mktemp -d)" || die 'mktemp failed'
-    youtube-dl --ignore-config --ignore-errors --no-continue --audio-format best -x --add-metadata -o "${d}/%(title)s [%(id)s].%(ext)s" "$1"
-    f="$(ls "$d")"
-    ffmpeg -i "${d}/${f}" -c:a libopus -b:a 96K "${f%.*}.opus"
-    rm -r "$d"
+    youtube-dl --ignore-config --no-playlist \
+        -x --audio-format best \
+        --postprocessor-args '-c:a libopus -b:a 96K' \
+        --add-metadata \
+        -o "%(title)s [%(id)s].%(ext)s" "$1"
+}
+
+vdl () {
+    require youtube-dl || return $?
+    require ffmpeg || return $?
+    usage $# 1 'youtube-dl + ffmpeg (hevc fast crf 30, opus 96k reencode into mkv) video downloader' \
+        "$0 music-url" || return $?
+    youtube-dl --ignore-config --no-playlist \
+        -f bestvideo+bestaudio \
+        --postprocessor-args '-c:v hevc -preset fast -crf 30 -c:a libopus -b:a 96K' \
+        --add-metadata \
+        --merge-output-format mkv \
+        -o "%(title)s [%(id)s].%(ext)s" "$1"
 }
