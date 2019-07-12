@@ -24,7 +24,6 @@ EOF
 sym="sym -v"
 [ "$2" = 'd' ] && sym="sym -vd"
 
-# XXX: dd2 assumes my gentoo-x230
 # TODO: when sym supports --ignore: --ignore='README\.md' --ignore='LICENSE' bin
 
 case "$1" in
@@ -61,7 +60,7 @@ dd2)
         dev-langs/python        \
         dev-tools/git		\
 	dev-tools/tmux
-    sudo /home/josh/bin/$sym -t / os/gentoo-x220 ;;
+    sudo /home/josh/bin/$sym -t / os/gentoo-x230 ;;
 tatami)
     $sym \
         base                    \

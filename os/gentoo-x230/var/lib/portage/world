@@ -1,0 +1,15 @@
+app-admin/sudo
+app-arch/lzop
+app-portage/gentoolkit
+app-shells/zsh
+dev-vcs/git
+net-misc/dhcpcd
+net-wireless/iw
+net-wireless/wpa_supplicant
+sys-apps/pciutils
+sys-boot/lilo
+sys-devel/binutils
+sys-fs/ncdu
+sys-kernel/gentoo-sources
+sys-kernel/linux-firmware
+sys-process/htop

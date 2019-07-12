@@ -1,0 +1,25 @@
+dev-vcs/git -perl -python
+
+dev-libs/libnl -debug
+dev-libs/openssl bindist
+net-misc/dhcpcd -embedded -udev
+net-wireless/wpa_supplicant bindist -readline
+dev-libs/elfutils -bzip2 -utils
+app-admin/sudo -sendmail
+
+
+# required by net-wireless/crda-3.18-r3::gentoo
+# required by net-wireless/wpa_supplicant-2.6-r10::gentoo
+# required by net-wireless/wpa_supplicant (argument)
+>=dev-python/m2crypto-0.31.0-r2 python_targets_python2_7
+# required by dev-python/m2crypto-0.31.0-r2::gentoo
+# required by net-wireless/crda-3.18-r3::gentoo
+# required by net-wireless/wpa_supplicant-2.6-r10::gentoo
+# required by net-wireless/wpa_supplicant (argument)
+>=virtual/python-typing-0-r1 python_targets_python2_7
+# required by virtual/python-typing-0-r1::gentoo[python_targets_python2_7]
+# required by dev-python/m2crypto-0.31.0-r2::gentoo
+# required by net-wireless/crda-3.18-r3::gentoo
+# required by net-wireless/wpa_supplicant-2.6-r10::gentoo
+# required by net-wireless/wpa_supplicant (argument)
+>=dev-python/typing-3.6.2-r1 python_targets_python2_7
