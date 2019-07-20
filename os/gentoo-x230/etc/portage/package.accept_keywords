@@ -1,7 +1,7 @@
 =sys-kernel/gentoo-sources-5.2.0
 =sys-devel/gcc-9.1.0 ~amd64
 =media-libs/mesa-19.1.2 ~amd64
-=www-client/firefox-68.0 ~amd64
+=www-client/firefox-68.0.1 ~amd64
 =sys-devel/clang-8.0.0 ~amd64
 =sys-devel/llvm-8.0.0 ~amd64
 =sys-devel/lld-8.0.0 ~amd64

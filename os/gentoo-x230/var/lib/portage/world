@@ -1,10 +1,15 @@
 app-admin/sudo
 app-arch/lzop
+app-emulation/docker
+app-misc/tmux
 app-portage/gentoolkit
+app-shells/fzy
 app-shells/zsh
 dev-libs/libinput
 dev-vcs/git
 gui-wm/sway
+media-fonts/hack
+media-sound/alsa-utils
 media-sound/pulseaudio
 media-video/ffmpeg
 media-video/mpv
@@ -20,5 +25,6 @@ sys-fs/dfc
 sys-fs/ncdu
 sys-kernel/gentoo-sources
 sys-kernel/linux-firmware
+sys-power/acpi
 sys-process/htop
 x11-terms/termite

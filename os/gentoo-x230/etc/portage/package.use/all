@@ -11,6 +11,8 @@ sys-auth/pambase consolekit
 media-sound/pulseaudio alsa -asyncns -bluetooth -tcpd -webrtc-aec -ssl -glib -orc -ipv6
 
 # firefox
+# TODO: encountering some mach build errors right now, don't depclean yet!
+# TODO: hopefully in the future, nodejs isn't required to build firefox
 sys-devel/llvm LLVM_TARGETS: X86 -AMDGPU -NVPTX
 sys-devel/clang LLVM_TARGETS: X86 -AMDGPU -NVPTX PYTHON_TARGETS: python2_7
 www-client/firefox clang lto hardened bindist eme-free hwaccel pulseaudio screenshot -startup-notification -gmp-autoupdate -dbus -wifi -geckodriver -system-harfbuzz system-av1 system-icu system-libevent system-libvpx system-sqlite system-webp
@@ -20,19 +22,27 @@ net-libs/nodejs -npm -snapshot -ssl PYTHON_TARGETS: python2_7
 media-video/ffmpeg vaapi x264 -openh264 x265 libaom -network
 media-video/mpv cli vaapi libass drm egl opengl uchardet zsh-completion -xv -bluray -archive -sdl -tools -javascript
 
+# docker
+app-emulation/containerd seccomp apparmor -btrfs
+app-emulation/docker seccomp apparmor -container-init -device-mapper -overlay
+
+# dev
+# sqlite -> dev-db/sqlite is necessary for default pyenv builds
+dev-lang/python sqlite ssl -tk -windows
+
 # tweaks
-dev-lang/python hardened sqlite ssl -tk -windows
-dev-libs/libnl -debug
 net-misc/dhcpcd -embedded -udev
 net-wireless/wpa_supplicant -readline
-dev-libs/elfutils -bzip2 -utils
 app-admin/sudo -sendmail
+dev-libs/elfutils -bzip2 -utils
+dev-libs/libnl -debug
 x11-libs/libX11 -ipv6
 x11-libs/cairo -glib
 media-libs/freetype -adobe-cff -cleartype_hinting
 app-crypt/rhash -ssl
 gui-apps/swaybg -man
 gui-apps/swaylock -gdk-pixbuf -filecaps -man
+media-sound/alsa-utils -libsamplerate
 
 # temporary (for sonifrog termite-9999)
 dev-util/gtk-doc PYTHON_TARGETS: python2_7
@@ -109,3 +119,6 @@ gnome-base/librsvg -vala
 # required by www-client/firefox-68.0::gentoo[system-libvpx]
 # required by firefox (argument)
 =media-libs/libvpx-1.7.0 postproc
+# required by app-emulation/docker-18.09.7::gentoo
+# required by app-emulation/docker (argument)
+>=app-emulation/runc-1.0.0_rc8 apparmor
