@@ -1,2 +1,53 @@
 =sys-kernel/gentoo-sources-5.2.0
 =sys-devel/gcc-9.1.0 ~amd64
+=media-libs/mesa-19.1.2 ~amd64
+=www-client/firefox-68.0 ~amd64
+=sys-devel/clang-8.0.0 ~amd64
+=sys-devel/llvm-8.0.0 ~amd64
+=sys-devel/lld-8.0.0 ~amd64
+
+# required by x11-terms/termite (argument)
+=x11-terms/termite-9999 ~amd64
+# required by x11-terms/termite-9999::SonicFrog
+# required by x11-terms/termite (argument)
+=x11-terms/vte-ng-9999 ~amd64
+# required by www-client/firefox-68.0::gentoo
+# required by firefox (argument)
+=dev-util/cbindgen-0.9.0 ~amd64
+# required by www-client/firefox-68.0::gentoo
+# required by firefox (argument)
+=dev-libs/nss-3.45 ~amd64
+# required by www-client/firefox-68.0::gentoo[system-libvpx]
+# required by firefox (argument)
+=media-libs/libvpx-1.8.0-r1 ~amd64
+# required by www-client/firefox-68.0::gentoo
+# required by firefox (argument)
+=dev-libs/nspr-4.21 ~amd64
+# required by www-client/firefox-68.0::gentoo[system-libvpx]
+# required by firefox (argument)
+=media-libs/libvpx-1.7.0 ~amd64
+# required by sys-devel/clang-runtime-8.0.0::gentoo[compiler-rt]
+# required by sys-devel/clang-8.0.0::gentoo
+# required by sys-libs/compiler-rt-sanitizers-8.0.0::gentoo[clang]
+=sys-libs/compiler-rt-8.0.0 ~amd64
+# required by sys-devel/clang-runtime-8.0.0::gentoo[sanitize,compiler-rt]
+# required by sys-devel/clang-8.0.0::gentoo
+# required by sys-libs/compiler-rt-8.0.0::gentoo[clang]
+=sys-libs/compiler-rt-sanitizers-8.0.0 ~amd64
+# required by sys-devel/llvm-8.0.0::gentoo[gold]
+# required by sys-libs/compiler-rt-8.0.0::gentoo
+# required by sys-devel/clang-runtime-8.0.0::gentoo[compiler-rt]
+# required by sys-devel/clang-8.0.0::gentoo
+# required by sys-libs/compiler-rt-sanitizers-8.0.0::gentoo[clang]
+=sys-devel/llvmgold-8 ~amd64
+# required by sys-devel/clang-runtime-8.0.0::gentoo[openmp]
+# required by sys-devel/clang-8.0.0::gentoo
+# required by sys-libs/compiler-rt-8.0.0::gentoo[clang]
+=sys-libs/libomp-8.0.0 ~amd64
+# required by sys-devel/clang-8.0.0::gentoo
+# required by sys-libs/compiler-rt-8.0.0::gentoo[clang]
+# required by sys-devel/clang-runtime-8.0.0::gentoo[compiler-rt]
+=sys-devel/llvm-8.0.0 ~amd64
+# required by sys-devel/clang-8.0.0::gentoo
+# required by sys-libs/compiler-rt-8.0.0::gentoo[clang]
+=sys-devel/clang-runtime-8.0.0 ~amd64
