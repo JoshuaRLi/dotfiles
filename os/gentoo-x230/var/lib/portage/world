@@ -2,6 +2,7 @@ app-admin/sudo
 app-arch/lzop
 app-portage/gentoolkit
 app-shells/zsh
+dev-libs/libinput
 dev-vcs/git
 gui-wm/sway
 media-sound/pulseaudio
