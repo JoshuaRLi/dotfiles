@@ -36,6 +36,7 @@ dd)
         os/arch                 \
         configs/dd              \
         shells/zsh              \
+        apps/mpv                \
         apps/gnupg              \
         apps/cava               \
         apps/redshift           \
@@ -56,6 +57,7 @@ dd2)
         os/gentoo               \
         configs/dd2             \
         shells/zsh              \
+        apps/mpv                \
         apps/gnupg              \
         dev-langs/python        \
         dev-tools/git		\
@@ -68,6 +70,7 @@ tatami)
         os/alpine               \
         configs/tatami          \
         shells/mksh             \
+        apps/mpv                \
         apps/gnupg              \
         apps/irssi              \
         apps/feh                \
@@ -84,6 +87,7 @@ work)
         bin                     \
         configs/work            \
         shells/zsh              \
+        apps/mpv                \
         dev-langs/python        \
         dev-langs/nodejs        \
         dev-tools/editorconfig  \
