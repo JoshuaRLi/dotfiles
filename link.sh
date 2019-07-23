@@ -85,6 +85,7 @@ work)
     $sym \
         base                    \
         bin                     \
+	os/osx			\
         configs/work            \
         shells/zsh              \
         apps/mpv                \

@@ -31,11 +31,11 @@ prompt_git () {
 }
 
 prompt () {
-    read HOSTNAME < /proc/sys/kernel/hostname
-    export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_pwd) $ '
+    [ -z "$HOST" ] && read HOST < /proc/sys/kernel/hostname
+    export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOST}${reset} $(prompt_pwd) $ '
 }
 
 devprompt () {
-    read HOSTNAME < /proc/sys/kernel/hostname
-    export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOSTNAME}${reset} $(prompt_pwd)$(prompt_git) $ '
+    [ -z "$HOST" ] && read HOST < /proc/sys/kernel/hostname
+    export PS1='${fg_white_bold}${USER}${reset}@${fg_red_bold}${HOST}${reset} $(prompt_pwd)$(prompt_git) $ '
 }
