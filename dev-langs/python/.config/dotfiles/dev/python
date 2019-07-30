@@ -6,10 +6,6 @@ export PATH
 
 if df_require pyenv; then
     eval "$(pyenv init -)"
-    usep () {
-        pyenv global "$1" && \
-        printf %s\\n "$(python -c 'import sys; print("Switched to", sys.executable)')"
-    }
 else
     df_warn 'pyenv not found'
 fi

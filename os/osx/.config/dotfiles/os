@@ -1,9 +1,9 @@
-ldd () {
-    otool -L "$(which "$1")"
-}
-
-alias copy=pbcopy
-alias paste=pbpaste
+# on at least mojave, /etc/zprofile calls this path_helper thing which messes up PATH (inverts order)
+# if you've prepended your own stuff that isn't in /etc/paths
+# so nuke PATH, then redo profile
+unset PATH
+eval "$(/usr/libexec/path_helper -s)"
+. ~/.profile
 
 # use GNU coreutils, findutils
 pathprepend                                 \
@@ -20,3 +20,11 @@ export MANPATH
 alias gcm="git commit -m"
 devprompt
 
+# misc
+
+ldd () {
+    otool -L "$(which "$1")"
+}
+
+alias copy=pbcopy
+alias paste=pbpaste
