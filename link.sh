@@ -91,6 +91,7 @@ work)
         apps/mpv                \
         dev-langs/python        \
         dev-langs/nodejs        \
+        dev-langs/golang        \
         dev-langs/ruby          \
         dev-tools/editorconfig  \
         dev-tools/git           \

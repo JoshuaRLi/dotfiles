@@ -5,8 +5,6 @@
 . "${XDG_CONFIG_HOME}/dotfiles/aliases"
 . "${XDG_CONFIG_HOME}/dotfiles/functions"
 
-[ -f "${XDG_CONFIG_HOME}/dotfiles/os" ] && . "${XDG_CONFIG_HOME}/dotfiles/os"
-
 # dev environments
 if [ -d "${XDG_CONFIG_HOME}/dotfiles/dev" ]; then
     for f in "${XDG_CONFIG_HOME}/dotfiles/dev/"*; do

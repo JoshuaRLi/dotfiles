@@ -9,3 +9,6 @@ set -o emacs  # this gets me most of the way there to my preferences
 alias hist='fc -l'
 export HISTFILE="${XDG_DATA_HOME}/mksh/history"
 export HISTSIZE=100000
+
+# os-specific overrides and custom stuff
+[ -f "${XDG_CONFIG_HOME}/dotfiles/os" ] && . "${XDG_CONFIG_HOME}/dotfiles/os"
