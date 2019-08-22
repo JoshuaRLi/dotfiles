@@ -11,8 +11,9 @@ pathprepend                                 \
     /usr/local/opt/findutils/libexec/gnubin
 export PATH
 
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-MANPATH="/usr/local/opt/findutils/libexec/gnuman:$MANPATH"
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
+MANPATH="/usr/local/opt/findutils/libexec/gnuman:${MANPATH}"
+MANPATH="/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/share/man/:${MANPATH}"
 export MANPATH
 
 # overrides
