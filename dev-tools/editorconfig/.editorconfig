@@ -11,7 +11,7 @@ trim_trailing_whitespace = true
 [*.{html,css,js,json,yml,scss,yaml}]
 indent_size = 2
 
-[{*.c,Makefile}]
+[{*.c,Makefile,*.go}]
 indent_style = tab
 
 [{*.md,*.rst,LICENSE,VERSION}]
