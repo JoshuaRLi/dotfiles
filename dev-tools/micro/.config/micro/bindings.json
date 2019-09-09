@@ -1,4 +1,7 @@
 {
+    "CtrlZ": "Suspend",
+    "CtrlU": "Undo",
+    "CtrlE": "Redo",
     "CtrlJ": "JumpLine",
     "CtrlSpace": "CommandMode",
     "\u001b[1;5D": "StartOfLine",
