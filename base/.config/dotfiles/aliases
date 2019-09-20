@@ -15,7 +15,6 @@ alias a='atool -Ea'
 alias ua='atool -Ex'
 alias e="$EDITOR"
 alias rd='rmdir'
-alias shred='shred -zun 10'
 alias badlinks='find . -xtype l'
 alias dmesg='dmesg -Tkw'
 alias lsblk='lsblk --output=NAME,MOUNTPOINT,TYPE,FSTYPE,LABEL,PARTLABEL,SIZE,UUID'
@@ -24,7 +23,6 @@ psi () {
 }
 alias pst='pstree -hTp'
 alias watchdir='inotifywait -e create,modify,delete -mr'
-alias serve='python3 -m http.server 8888'
 
 if df_require ncdu; then
     alias du='ncdu -rr'
@@ -38,7 +36,13 @@ else
     alias df='df --exclude-type=tmpfs -h'
 fi
 
-# rgh: grep through hidden files, excluding .git/ but including gitignored files (rg default behavior)
+# fd: find hidden files, excluding .git/ but including gitignored files
+if df_require fd; then
+    alias fdh="fd --no-ignore-vcs -H -E '.git/'"
+fi
+
+# rgh: grep through hidden files, excluding .git/ but including gitignored files
+# (rg's default behavior is to ignore vcs ignore)
 # AFAIK neither posix grep, gnu grep, nor git grep scratch this itch quite as elegantly as ripgrep does
 # NOTE: add -l to list filenames only then | xargs $EDITOR
 if df_require rg; then
@@ -51,7 +55,7 @@ alias gup='git submodule update --init --recursive --remote'
 alias gaa='git add --all'
 alias gs='git status -sb -uall'
 alias gcm='git commit -S -m'
-alias gl="git log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d %C(bold white)%s%Creset %Cgreen%ar %Cblue%an <%ae>'"
+alias gl="git log"
 alias gp='git push'
 alias gb='git branch -vv --all'
 alias master='git checkout master'
