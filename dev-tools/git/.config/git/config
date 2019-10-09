@@ -15,7 +15,8 @@
 
 [alias]
     amend = commit --amend -v
-    c = checkout @{-1}
+    c = checkout
+    clear = checkout -- .
     root = rev-parse --show-toplevel
     info = show --format=fuller --show-signature
     stat = show --format=fuller --show-signature --stat
