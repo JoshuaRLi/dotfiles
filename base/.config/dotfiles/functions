@@ -78,6 +78,18 @@ esize () {
     fd -e "$1" -0 | xargs -0 du -hc | awk 'END { print $1 }'
 }
 
+vcut () {
+    require ffmpeg || return $?
+    usage $# 3 'Cuts a video from start to end timestamp (format hh:mm:ss)' \
+        "$0 file start end" || return $?
+    fp="$1"
+    fn="$(df_basename "$fp")"
+    fd="$(df_dirname "$fp")"
+    fn_noext="$(df_stripext "$fn")"
+    fe="$(df_getext "$fn")"
+    ffmpeg -i "$fp" -ss "$2" -to "$3" -c copy "${fd}/${fn_noext}-cut-${2}-${3}.${fe}"
+}
+
 mdl () {
     require youtube-dl || return $?
     require ffmpeg || return $?

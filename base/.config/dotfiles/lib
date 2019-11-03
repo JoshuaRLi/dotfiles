@@ -6,6 +6,29 @@ df_require () {
     command -v "$1" 2>&1 > /dev/null
 }
 
+df_basename () {
+    dir=${1%${1##*[!/]}}
+    dir=${dir##*/}
+    printf %s "${dir:-/}"
+}
+
+df_dirname () {
+    dir=${1:-.}
+    dir=${dir%%"${dir##*[!/]}"}
+    [ "${dir##*/*}" ] && dir=.
+    dir=${dir%/*}
+    dir=${dir%%"${dir##*[!/]}"}
+    printf %s "${dir:-/}"
+}
+
+df_stripext () {
+    printf %s "${1%.*}"
+}
+
+df_getext () {
+    printf %s "${1##*.}"
+}
+
 pathprepend () {
     for DIR in "$@"; do
         if [ ! -d "$DIR" ]; then
