@@ -1,9 +1,15 @@
-alias pkgrm='yay -Rs'
 alias pkgclean='yay -Yc'
 alias pkgsearch='yay --sortby popularity'
-alias pkgq='yay -Si'
-alias pkgfiles='yay -Fl'
-pacwhich () { yay -Qo "$(command -v "$1")"; }
+alias pkginfo='pacman -Si'
+alias pkgfiles='pacman -Fl'
+
+pkgwhich () {
+    pacman -Qo "$(command -v "$1")"
+}
+
+# list top-level packages installed explicitly by user
+# this includes those from the AUR or custom packages
+alias pkglist='pacman -Qqet'
 
 # list top-level official packages not part of base, base-devel, or xorg
 # outputs bottom-up listing of size MiB name
