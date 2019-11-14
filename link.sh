@@ -24,7 +24,7 @@ EOF
 sym="sym -v"
 [ "$2" = 'd' ] && sym="sym -vd"
 
-# TODO: when sym supports --ignore: --ignore='README\.md' --ignore='LICENSE' bin
+# TODO: when sym supports --ignore: --ignore='README\.md' --ignore='LICENSE'
 
 case "$1" in
 base)
@@ -32,7 +32,6 @@ base)
 dd)
     $sym \
         base                    \
-        bin                     \
         os/arch                 \
         configs/dd              \
         shells/zsh              \
@@ -53,7 +52,6 @@ dd)
 dd2)
     $sym \
         base                    \
-        bin                     \
         os/gentoo               \
         configs/dd2             \
         shells/zsh              \
@@ -66,7 +64,6 @@ dd2)
 tatami)
     $sym \
         base                    \
-        bin                     \
         os/alpine               \
         configs/tatami          \
         shells/mksh             \
@@ -84,7 +81,6 @@ tatami)
 work)
     $sym \
         base                    \
-        bin                     \
 	os/osx			\
         configs/work            \
         shells/zsh              \
