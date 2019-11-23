@@ -5,7 +5,7 @@ alias wget="wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts"
 
 alias c='tput reset'
 alias ..='cd ..'
-alias ls='ls -F --color=auto'
+alias ls='ls -F --color=always'
 alias l='ls -lph'
 alias ll='ls -Alph'
 alias llt='ll -rt'
