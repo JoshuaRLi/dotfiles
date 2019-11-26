@@ -25,7 +25,7 @@
 
 [push]
     default = current
-    followTags = true
+    followTags = false
 
 [branch]
     autoSetupMerge = always
@@ -34,3 +34,12 @@
     ui = auto
     status = always
     diff = always
+
+[diff]
+    tool = icdiff
+
+[difftool]
+    prompt = false
+
+[difftool "icdiff"]
+    cmd = icdiff --line-numbers $LOCAL $REMOTE

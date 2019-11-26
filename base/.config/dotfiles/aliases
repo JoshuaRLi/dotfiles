@@ -56,11 +56,13 @@ alias gaa='git add --all'
 alias gs='git status -sb -uall'
 alias gcm='git commit -S -m'
 alias gl="git log"
-alias gp='git push'
+alias gp='git push -u'
 alias gb='git branch -vv --all'
 alias master='git checkout master'
 alias gd='git diff'
+alias gdd='git difftool'
 alias gdc='git diff --cached'
+alias gddc='git difftool --cached'
 gr () {
     [ -n "$1" ] && git reset HEAD~"$1" || git reset
 }
@@ -70,3 +72,5 @@ alias tl='tmux ls'
 alias tn='tmux new -s'
 alias ta='tmux a -t'
 alias tk='tmux kill-session -t'
+
+alias mp='mpv -vo null'
