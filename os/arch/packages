@@ -18,6 +18,7 @@ dunst
 editorconfig-core-c
 exfat-utils
 expac
+fakeroot
 fd
 feh
 firefox
@@ -43,7 +44,6 @@ man-pages
 micro-bin
 nano
 ncdu
-openbox
 openssh
 patch
 physlock
@@ -64,7 +64,6 @@ rofi-pass
 rsync
 rustup
 rxvt-unicode
-sed
 shellcheck-static
 tcc
 tio
@@ -73,6 +72,7 @@ tmux
 ttf-hack
 upx
 wget
+xf86-video-intel
 xorg-server
 xorg-xinit
 xorg-xsetroot
