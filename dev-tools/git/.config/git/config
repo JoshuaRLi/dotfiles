@@ -15,6 +15,7 @@
 
 [alias]
     amend = commit --amend -v
+    b = blame -c --date=short
     c = checkout
     clear = checkout -- .
     root = rev-parse --show-toplevel
