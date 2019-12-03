@@ -19,7 +19,6 @@ export MANPATH
 # overrides
 
 alias gcm="git commit -m"
-devprompt
 
 # misc
 
