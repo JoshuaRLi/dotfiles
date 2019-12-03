@@ -52,7 +52,7 @@ format-padding = 1
 
 [module/network]
 type = internal/network
-interface = wlp2s0
+interface = wlan0
 interval = 15
 label-connected = ap %essid%
 label-disconnected = d/c
