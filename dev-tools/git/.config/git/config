@@ -21,7 +21,6 @@
     root = rev-parse --show-toplevel
     info = show --format=fuller --show-signature
     stat = show --format=fuller --show-signature --stat
-    peek = show --format=fuller --show-signature HEAD
     unstage = reset --
 
 [push]
