@@ -59,10 +59,8 @@ alias gl="git log"
 alias gp='git push -u'
 alias gb='git branch -vv --all'
 alias master='git checkout master'
-alias gd='git diff'
-alias gdd='git difftool'
-alias gdc='git diff --cached'
-alias gddc='git difftool --cached'
+alias gd='git d'
+alias gdc='git dc'
 gr () {
     [ -n "$1" ] && git reset HEAD~"$1" || git reset
 }
