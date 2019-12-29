@@ -20,6 +20,7 @@
     d = ydiff -s -w0 --wrap
     dc = ydiff -s -w0 --wrap --cached
     l = log --date=short --pretty='format:%h %ad (%an)%d %s'
+    s = "!showdiff () { rev=${1:-HEAD}; git d $rev~1 $rev; }; showdiff $1"
     unstage = reset --
 
 [push]
