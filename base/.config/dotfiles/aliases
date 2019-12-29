@@ -50,21 +50,18 @@ if df_require rg; then
 fi
 
 # see also ~/.gitconfig
-alias gc='git clone --recursive'
-alias gup='git submodule update --init --recursive --remote'
 alias gaa='git add --all'
-alias gs='git status -sb -uall'
-alias gcm='git commit -S -m'
-alias gl="git log"
-alias gp='git push -u'
-alias gb='git branch -vv --all'
-alias master='git checkout master'
+alias gc='git clone'
+alias gcm='git commit -S'
 alias gd='git d'
 alias gdc='git dc'
+alias gl='git log'
+alias gp='git push -u'
 gr () {
     [ -n "$1" ] && git reset HEAD~"$1" || git reset
 }
 alias grv='git remote -v'
+alias gs='git status -sb -uall'
 
 alias tl='tmux ls'
 alias tn='tmux new -s'
