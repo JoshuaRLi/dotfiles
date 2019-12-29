@@ -19,10 +19,7 @@
     c = checkout
     d = ydiff -s -w0 --wrap
     dc = ydiff -s -w0 --wrap --cached
-    clear = checkout -- .
-    root = rev-parse --show-toplevel
-    info = show --format=fuller --show-signature
-    stat = show --format=fuller --show-signature --stat
+    l = log --date=short --pretty='format:%h %ad (%an)%d %s'
     unstage = reset --
 
 [push]

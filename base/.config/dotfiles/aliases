@@ -55,7 +55,7 @@ alias gc='git clone'
 alias gcm='git commit -S'
 alias gd='git d'
 alias gdc='git dc'
-alias gl='git log'
+alias gl='git l'
 alias gp='git push -u'
 gr () {
     [ -n "$1" ] && git reset HEAD~"$1" || git reset
