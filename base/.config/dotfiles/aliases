@@ -25,16 +25,12 @@ alias pst='pstree -hTp'
 alias watchdir='inotifywait -e create,modify,delete -mr'
 
 if df_require ncdu; then
-    alias du='ncdu -rr'
+    alias du='ncdu -rr --exclude ".git" --exclude "node_modules"'
 else
     alias du='du -skh .??* * | sort -rh'
 fi
 
-if df_require dfc; then
-    alias df='dfc -p /dev,-tmpfs'
-else
-    alias df='df --exclude-type=tmpfs -h'
-fi
+alias df='df -x tmpfs -x devtmpfs -h -T'
 
 # fd: find hidden files, excluding .git/ but including gitignored files
 if df_require fd; then

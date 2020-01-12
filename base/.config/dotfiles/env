@@ -44,5 +44,6 @@ df_require gpg && export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
 df_require pass && export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/password-store"
 
 # tweaks
-# don't colorize setuid/gid or filecaps to avoid expensive syscalls
-export LS_COLORS='su=00:sg=00:ca=00:'
+# su=00:sg=00:ca=00 don't colorize setuid/gid or filecaps to avoid expensive syscalls
+# or=40;31;01 broken symlinks are red
+export LS_COLORS='su=00:sg=00:ca=00:or=40;31;01:'
