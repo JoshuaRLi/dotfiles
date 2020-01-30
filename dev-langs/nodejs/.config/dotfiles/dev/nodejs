@@ -1,7 +1,9 @@
-# nvm kills shell startup times, so explicitly `usenvm` to lazy load when i need it
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 
-usenvm () {
-    export NVM_DIR="${XDG_DATA_HOME}/nvm"
-    [ -s "${NVM_DIR}/nvm.sh" ] && . "${NVM_DIR}/nvm.sh"
-    export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
-}
+if df_require volta; then
+    export VOLTA_HOME="${XDG_DATA_HOME}/volta"
+    pathprepend "${VOLTA_HOME}/bin"
+    export PATH
+else
+    df_warn 'volta not found'
+fi
