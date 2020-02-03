@@ -39,7 +39,6 @@ dd)
         apps/gnupg              \
         apps/cava               \
         apps/rofi-pass          \
-        apps/irssi              \
         apps/feh                \
         dev-langs/python        \
         dev-langs/golang        \
@@ -68,7 +67,6 @@ tatami)
         shells/mksh             \
         apps/mpv                \
         apps/gnupg              \
-        apps/irssi              \
         apps/feh                \
         dev-langs/python        \
         dev-langs/golang        \
