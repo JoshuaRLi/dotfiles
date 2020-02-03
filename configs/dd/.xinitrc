@@ -1,7 +1,6 @@
 #!/bin/sh
 
 urxvtd -q -f -o &
-redshift &
 sxhkd &
 
 command -v udevil > /dev/null && \

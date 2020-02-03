@@ -38,7 +38,6 @@ dd)
         apps/mpv                \
         apps/gnupg              \
         apps/cava               \
-        apps/redshift           \
         apps/rofi-pass          \
         apps/irssi              \
         apps/feh                \
