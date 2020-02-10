@@ -45,6 +45,10 @@ if df_require rg; then
     alias rgh="rg --hidden -g '!.git'"
 fi
 
+if df_require fping; then
+    alias ping="fping -p500 -l"
+fi
+
 # see also ~/.gitconfig
 alias gaa='git add --all'
 alias gc='git clone'
