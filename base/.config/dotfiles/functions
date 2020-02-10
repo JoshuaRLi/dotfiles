@@ -15,13 +15,6 @@ require () {
     df_require "$1" || die "${1} is required, but not found"
 }
 
-wscan () {
-    require iw || return $?
-    usage $# 1 'uses INTERFACE to scan for wireless AP SSIDs.' \
-        "$0 INTERFACE" || return $?
-    sudo iw dev "$1" scan | grep 'SSID:' | awk '{if ($2) print $2;}'
-}
-
 # NOTE: ip addr is better than this, for example you can see the ip assigned to a particular interface,
 #       whereas hostname -i just prints the ips
 lanip () {
@@ -41,28 +34,6 @@ sshnew () {
     ssh-keygen -t ed25519 -a 100 -f "${HOME}/.ssh/${1}" -N '' -C "$2"
     chmod 400 -v "${HOME}/.ssh/${1}"
     chmod 444 -v "${HOME}/.ssh/${1}.pub"
-}
-
-sshnewrsa () {
-    require ssh-keygen || return $?
-    usage $# 1 'Generates a secure ssh keypair (openssh format) using rsa-4096.' \
-        "$0 [keypair name] [optional comment]" || return $?
-    ssh-keygen -t rsa -b 4096 -a 100 -f "${HOME}/.ssh/${1}" -N '' -C "$2"
-    chmod 400 -v "${HOME}/.ssh/${1}"
-    chmod 444 -v "${HOME}/.ssh/${1}.pub"
-}
-
-# this is extremely naive, will probably remove after i'm more experienced with making patches
-mkpatch () {
-    require diff || return $?
-    usage $# 1 'Opens FILE with your EDITOR and generates a same-file patch without timestamp.' \
-        "$0 FILE" || return $?
-    [ -z "$EDITOR" ] && die '$EDITOR is not set.'
-    tmp="$(mktemp)" || die 'mktemp failed'
-    cp "$1" "$tmp"
-    $EDITOR "$tmp"
-    diff -ua "$1" "$tmp" | sed "s|${tmp}|${1}|" | awk '{ if (NR==1 || NR==2) { print $1,$2 } else { print } };' > "${1}.patch"
-    rm "$tmp"
 }
 
 # extension counter
