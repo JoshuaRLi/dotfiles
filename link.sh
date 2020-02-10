@@ -36,7 +36,6 @@ dd)
         configs/dd              \
         shells/zsh              \
         apps/mpv                \
-        apps/gnupg              \
         apps/cava               \
         apps/rofi-pass          \
         apps/feh                \
@@ -54,7 +53,6 @@ dd2)
         configs/dd2             \
         shells/zsh              \
         apps/mpv                \
-        apps/gnupg              \
         dev-langs/python        \
         dev-tools/git		\
 	dev-tools/tmux
@@ -66,7 +64,6 @@ tatami)
         configs/tatami          \
         shells/mksh             \
         apps/mpv                \
-        apps/gnupg              \
         apps/feh                \
         dev-langs/python        \
         dev-langs/golang        \
