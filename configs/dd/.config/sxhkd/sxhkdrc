@@ -14,7 +14,8 @@ ctrl + shift + Return
     bspwm-draw-urxvt
 
 super + Return
-    rofi -show run
+#    . "${XDG_CONFIG_HOME}/dotfiles/colors/colors.sh" && \
+    bemenu-run -b --fn 'Hack 15' -p '>' --nb "#000000"
 
 ctrl + alt + Delete
     systemctl suspend

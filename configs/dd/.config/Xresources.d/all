@@ -1,3 +1,2 @@
 #include "xft"
 #include "urxvt"
-#include "rofi"
