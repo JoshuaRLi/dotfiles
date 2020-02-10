@@ -1,7 +1,6 @@
 # invocation wrappers for xdg compliance
 alias tmux="tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf"
 alias sqlite3="sqlite3 -init ${XDG_CONFIG_HOME}/sqlite3/sqliterc"
-alias wget="wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts"
 
 alias c='tput reset'
 alias ..='cd ..'
