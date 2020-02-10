@@ -2,6 +2,8 @@
 alias tmux="tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf"
 alias sqlite3="sqlite3 -init ${XDG_CONFIG_HOME}/sqlite3/sqliterc"
 
+# TODO: need unarchiver alias/func and zstd
+
 alias c='tput reset'
 alias ..='cd ..'
 alias ls='ls -F --color=always'
@@ -9,13 +11,9 @@ alias l='ls -lph'
 alias ll='ls -Alph'
 alias llt='ll -rt'
 alias treea='tree -aI .git'
-alias al='atool -El'
-alias a='atool -Ea'
-alias ua='atool -Ex'
 alias e="$EDITOR"
 alias rd='rmdir'
 alias badlinks='find . -xtype l'
-alias dmesg='dmesg -Tkw'
 alias lsblk='lsblk --output=NAME,MOUNTPOINT,TYPE,FSTYPE,LABEL,PARTLABEL,SIZE,UUID'
 psi () {
     [ -n "$1" ] && ps wup $(pgrep -f "$1")
