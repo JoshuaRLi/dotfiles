@@ -1,5 +1,0 @@
-USERNAME_field='login'
-default_do='menu'
-
-clip='clipboard'
-copy_pass='Ctrl+c'

@@ -37,7 +37,6 @@ dd)
         shells/zsh              \
         apps/mpv                \
         apps/cava               \
-        apps/rofi-pass          \
         apps/feh                \
         dev-langs/*             \
         dev-tools/* ;;

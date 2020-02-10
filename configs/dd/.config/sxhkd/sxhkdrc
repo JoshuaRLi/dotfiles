@@ -16,9 +16,6 @@ ctrl + shift + Return
 super + Return
     rofi -show run
 
-super + alt + Return
-    rofi-pass
-
 ctrl + alt + Delete
     systemctl suspend
 
