@@ -39,13 +39,8 @@ dd)
         apps/cava               \
         apps/rofi-pass          \
         apps/feh                \
-        dev-langs/python        \
-        dev-langs/golang        \
-        dev-tools/editorconfig  \
-        dev-tools/git           \
-        dev-tools/nano          \
-        dev-tools/micro         \
-        dev-tools/tmux  ;;
+        dev-langs/*             \
+        dev-tools/* ;;
 dd2)
     $sym \
         base                    \
@@ -53,10 +48,11 @@ dd2)
         configs/dd2             \
         shells/zsh              \
         apps/mpv                \
-        dev-langs/python        \
-        dev-tools/git		\
-	dev-tools/tmux
-    sudo /home/josh/bin/$sym -t / os/gentoo-x230 ;;
+        dev-langs/*             \
+        dev-tools/*
+
+    sudo /home/josh/bin/$sym -t / \
+        os/gentoo-x230 ;;
 tatami)
     $sym \
         base                    \
@@ -65,13 +61,8 @@ tatami)
         shells/mksh             \
         apps/mpv                \
         apps/feh                \
-        dev-langs/python        \
-        dev-langs/golang        \
-        dev-tools/editorconfig  \
-        dev-tools/git           \
-        dev-tools/nano          \
-        dev-tools/micro         \
-        dev-tools/tmux  ;;
+        dev-langs/*             \
+        dev-tools/* ;;
 work)
     $sym \
         base                    \
@@ -79,15 +70,8 @@ work)
         configs/work            \
         shells/zsh              \
         apps/mpv                \
-        dev-langs/python        \
-        dev-langs/nodejs        \
-        dev-langs/golang        \
-        dev-langs/ruby          \
-        dev-tools/editorconfig  \
-        dev-tools/git           \
-        dev-tools/nano          \
-        dev-tools/micro         \
-        dev-tools/tmux  ;;
+        dev-langs/*             \
+        dev-tools/* ;;
 *)
     usage
     ;;
