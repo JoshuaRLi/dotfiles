@@ -15,22 +15,26 @@ require () {
     df_require "$1" || die "${1} is required, but not found"
 }
 
-# NOTE: ip addr is better than this, for example you can see the ip assigned to a particular interface,
-#       whereas hostname -i just prints the ips
 lanip () {
-    require hostname || return $?
-    printf %s\\n "$(hostname -i)"
+    require ip || return $?
+    usage $# 1 'Displays the LAN ip assigned to interface IFACE.' \
+        "$0 IFACE" || return $?
+
+    ip addr show dev "$1" | grep 'inet'
 }
 
 wanip () {
-    require dig || return $?
-    printf %s\\n "$(dig @resolver1.opendns.com ANY myip.opendns.com +short)"
+    require drill || return $?
+
+    drill myip.opendns.com @resolver1.opendns.com IN A | grep myip.opendns.com | grep -v ';;' | awk '{print $5}'
+    # drill whoami.cloudflare @1.1.1.1 CH TXT
 }
 
 sshnew () {
     require ssh-keygen || return $?
     usage $# 1 'Generates a secure ssh keypair (openssh format) using ed25519.' \
         "$0 [keypair name] [optional comment]" || return $?
+
     ssh-keygen -t ed25519 -a 100 -f "${HOME}/.ssh/${1}" -N '' -C "$2"
     chmod 400 -v "${HOME}/.ssh/${1}"
     chmod 444 -v "${HOME}/.ssh/${1}.pub"
@@ -39,6 +43,7 @@ sshnew () {
 # extension counter
 ecount () {
     require fd || return $?
+
     fd -tf -x echo {/} | awk -F. 'NF > 1 {print tolower($NF)}' | sort | uniq -c | sort -n
 }
 
@@ -46,6 +51,7 @@ esize () {
     require fd || return $?
     usage $# 1 'Reports total disk space taken up by files with the extension, in the current directory.' \
         "$0 extension" || return $?
+
     fd -e "$1" -0 | xargs -0 du -hc | awk 'END { print $1 }'
 }
 
@@ -53,6 +59,7 @@ vcut () {
     require ffmpeg || return $?
     usage $# 3 'Cuts a video from start to end timestamp (format hh:mm:ss)' \
         "$0 file start end" || return $?
+
     fp="$1"
     fn="$(df_basename "$fp")"
     fd="$(df_dirname "$fp")"
@@ -66,6 +73,7 @@ mdl () {
     require ffmpeg || return $?
     usage $# 1 'youtube-dl + ffmpeg (opus 96k reencode) music downloader' \
         "$0 music-url" || return $?
+
     youtube-dl --ignore-config --no-playlist \
         -x --audio-format best \
         --postprocessor-args '-c:a libopus -b:a 96K' \
@@ -78,6 +86,7 @@ vdl () {
     require ffmpeg || return $?
     usage $# 1 'youtube-dl + ffmpeg (hevc fast crf 30, opus 96k reencode into mkv) video downloader' \
         "$0 music-url" || return $?
+
     youtube-dl --ignore-config --no-playlist \
         -f bestvideo+bestaudio \
         --postprocessor-args '-c:v hevc -preset fast -crf 30 -c:a libopus -b:a 96K' \
