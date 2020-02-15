@@ -1,9 +1,9 @@
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 
-if df_require volta; then
-    export VOLTA_HOME="${XDG_DATA_HOME}/volta"
-    pathprepend "${VOLTA_HOME}/bin"
-    export PATH
-else
+export VOLTA_HOME="${XDG_DATA_HOME}/volta"
+pathprepend "${VOLTA_HOME}/bin"
+export PATH
+
+if ! df_require volta; then
     df_warn 'volta not found'
 fi
