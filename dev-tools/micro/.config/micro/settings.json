@@ -2,6 +2,7 @@
     "autoclose": false,
     "autoindent": true,
     "autosave": 0,
+    "autosu": false,
     "backup": true,
     "basename": false,
     "colorcolumn": 0,
@@ -54,6 +55,5 @@
     "tabmovement": true,
     "tabsize": 4,
     "tabstospaces": false,
-    "termtitle": false,
     "useprimary": true
 }
