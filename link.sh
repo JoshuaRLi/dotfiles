@@ -35,6 +35,7 @@ dd)
         os/arch                 \
         configs/dd              \
         shells/zsh              \
+        apps/alacritty          \
         apps/mpv                \
         apps/cava               \
         apps/feh                \
@@ -68,6 +69,7 @@ work)
 	os/osx			\
         configs/work            \
         shells/zsh              \
+        apps/alacritty          \
         apps/mpv                \
         dev-langs/*             \
         dev-tools/* ;;
