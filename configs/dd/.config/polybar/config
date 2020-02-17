@@ -1,6 +1,6 @@
 [colors]
-bg = ${xrdb:color0}
-fg = ${xrdb:color15}
+bg = "#000000"
+fg = "#E6E6E6"
 
 [bar/bar]
 bottom = true
