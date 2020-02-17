@@ -18,10 +18,6 @@ bspc config paddingless_monocle     true
 bspc config focus_follows_pointer   true
 bspc config pointer_follows_focus   false
 
-# init/reload graphical programs
-xrdb -merge "${XDG_CONFIG_HOME}/dotfiles/colors/colors.Xresources"
-xrdb -merge "${XDG_CONFIG_HOME}/Xresources.d/all"
-
 . "${XDG_CONFIG_HOME}/dotfiles/colors/colors.sh"
 
 bspc config normal_border_color "#777777"

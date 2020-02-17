@@ -15,10 +15,10 @@ EOF
 W=$((W / 8))
 H=$((H / 16))
 
-bspc rule -a URxvt -o state=floating
+bspc rule -a Alacritty -o state=floating
 
 if [ -z "$1" ]; then
-    urxvtc --geometry "${W}x${H}+${X}+${Y}"
+    alacritty --dimensions "$W" "$H" --position "$X" "$Y"
 else
-    urxvtc --geometry "${W}x${H}+${X}+${Y}" -e "$1"
+    alacritty --dimensions "$W" "$H" --position "$X" "$Y" -e "$1"
 fi
