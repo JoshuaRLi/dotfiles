@@ -15,14 +15,10 @@ set show-all-if-ambiguous On
 "\e[;5D": beginning-of-line         # home
 "\C-e": end-of-line
 "\e[;5C": end-of-line               # end
-"\C-?":  backward-kill-word         # possible ctrl+backspace (iTerm2)
-"\C-H": backward-kill-word          # possible ctrl+backspace (urxvt)
-"\C-K": kill-whole-line
+"\C-H": backward-kill-word          # ctrl+backspace
 "\e[1;5D": backward-word            # ctrl+left
-"\e\e[D": backward-word             # alt+left
 "\e[1;5C": forward-word             # ctrl+right
-"\e\e[C": forward-word              # alt+right
-"\e[3~": backward-delete-char       # del
+"\e[3~": kill-whole-line            # del
 
 # disable some emacs defaults that i don't use
 "\C-b": nop

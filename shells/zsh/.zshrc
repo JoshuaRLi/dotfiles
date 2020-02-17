@@ -11,14 +11,10 @@ devprompt
 
 # keybindings
 bindkey -e
-#bindkey '\C-?'  backward-kill-word          # possible ctrl+backspace (iTerm2)
-bindkey '\C-H'  backward-kill-word          # possible ctrl+backspace (urxvt)
-bindkey '\C-K'  kill-whole-line
+bindkey '\C-H'  backward-kill-word          # ctrl+backspace
 bindkey '\e[1;5D'  backward-word            # ctrl+left
-bindkey '\e\e[D'  backward-word             # alt+left
 bindkey '\e[1;5C'  forward-word             # ctrl+right
-bindkey '\e\e[C'  forward-word              # alt+right
-bindkey '\e[3~'  backward-delete-char       # del
+bindkey '\e[3~'  kill-whole-line            # del
 
 # completion
 [ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir "${XDG_CACHE_HOME}/zsh"
