@@ -2,9 +2,7 @@ env:
   TERM: xterm-256color
 
 window:
-  dimensions:
-    columns: 0
-    lines: 0
+  decorations: none
   padding:
     x: 16
     y: 16
@@ -15,6 +13,18 @@ font:
   bold:
     family: Hack
   size: 11
+
+live_config_reload: false
+
+mouse:
+  url:
+    launcher:
+      program: none
+
+key_bindings:
+  # NOTE: this syntax means you need to hold both mod keys down, not one of them
+  - { key: C, mods: Control|Shift, action: Copy }
+  - { key: V, mods: Control|Shift, action: Paste }
 
 # Colors (Dracula, but with black bg)
 colors:
