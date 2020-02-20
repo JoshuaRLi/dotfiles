@@ -33,7 +33,8 @@ colors:
     foreground: '0xf8f8f2'
 
   normal:
-    black:   '0x000000'
+    # dark grey for black so micro can show stuff like indentchars
+    black:   '0x333333'
     red:     '0xff5555'
     green:   '0x50fa7b'
     yellow:  '0xf1fa8c'
