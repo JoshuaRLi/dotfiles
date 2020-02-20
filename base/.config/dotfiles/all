@@ -1,7 +1,6 @@
 # source this file to configure an interactive shell.
 # assumes ~/.profile has been sourced, which implies lib and env are sourced.
 
-. "${XDG_CONFIG_HOME}/dotfiles/prompt"
 . "${XDG_CONFIG_HOME}/dotfiles/aliases"
 . "${XDG_CONFIG_HOME}/dotfiles/functions"
 
@@ -13,3 +12,5 @@ if [ -d "${XDG_CONFIG_HOME}/dotfiles/dev" ]; then
 fi
 
 [ -f "${XDG_CONFIG_HOME}/dotfiles/specific" ] && . "${XDG_CONFIG_HOME}/dotfiles/specific"
+
+export PS1='$(prompt)'
