@@ -19,7 +19,7 @@
     "filetype": "unknown",
     "ftoptions": false,
     "ignorecase": false,
-    "indentchar": " ",
+    "indentchar": "|",
     "infobar": true,
     "keepautoindent": false,
     "keymenu": false,
