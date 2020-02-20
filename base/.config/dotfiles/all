@@ -13,4 +13,6 @@ fi
 
 [ -f "${XDG_CONFIG_HOME}/dotfiles/specific" ] && . "${XDG_CONFIG_HOME}/dotfiles/specific"
 
-export PS1='$(prompt)'
+if df_require prompt; then
+    export PS1='$(prompt)'
+fi
