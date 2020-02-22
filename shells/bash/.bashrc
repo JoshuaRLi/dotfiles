@@ -1,6 +1,5 @@
 . "${HOME}/.profile"
 . "${XDG_CONFIG_HOME}/dotfiles/all"
-devprompt
 
 # configure GNU readline + keybindings
 bind -f "${XDG_CONFIG_HOME}/readline/inputrc"
