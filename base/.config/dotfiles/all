@@ -14,5 +14,9 @@ fi
 [ -f "${XDG_CONFIG_HOME}/dotfiles/specific" ] && . "${XDG_CONFIG_HOME}/dotfiles/specific"
 
 if df_require prompt; then
+    export PROMPT_STYLE_HOSTNAME="$(tput setaf 1)"  # red
+    export PROMPT_STYLE_WD="$(tput setaf 6)"        # cyan
+    export PROMPT_STYLE_BRANCH="$(tput setaf 2)"    # green
+    export PROMPT_STYLE_RESET="$(tput sgr0)"
     export PS1='$(prompt)'
 fi
