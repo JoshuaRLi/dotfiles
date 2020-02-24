@@ -1,11 +1,12 @@
 . "${XDG_CONFIG_HOME}/dotfiles/all"
 
-# prompt
-fg_green=$'%{\e[32m%}'
-fg_cyan=$'%{\e[36m%}'
-fg_red_bold=$'%{\e[1;31m%}'
-fg_white_bold=$'%{\e[1;97m%}'
-reset=$'%{\e[0m%}'
+# zsh prompt_subst requires escaped sequences for colors
+# the regular stuff from tput messes with autocompletion formatting,
+# so let's just override here and with hardcoded ansi escape
+export PROMPT_STYLE_HOSTNAME=$'%{\e[31m%}'  # red
+export PROMPT_STYLE_BRANCH=$'%{\e[32m%}'    # green
+export PROMPT_STYLE_WD=$'%{\e[36m%}'        # cyan
+export PROMPT_STYLE_RESET=$'%{\e[0m%}'
 setopt prompt_subst
 
 # keybindings
