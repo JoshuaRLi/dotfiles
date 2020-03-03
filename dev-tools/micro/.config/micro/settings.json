@@ -13,7 +13,7 @@
     "diffgutter": false,
     "editorconfig": true,
     "encoding": "utf-8",
-    "eofnewline": false,
+    "eofnewline": true,
     "fastdirty": true,
     "fileformat": "unix",
     "filetype": "unknown",
@@ -34,7 +34,7 @@
     ],
     "pluginrepos": [],
     "readonly": false,
-    "rmtrailingws": false,
+    "rmtrailingws": true,
     "ruler": true,
     "savecursor": true,
     "savehistory": true,
@@ -55,5 +55,6 @@
     "tabmovement": true,
     "tabsize": 4,
     "tabstospaces": false,
-    "useprimary": true
+    "useprimary": true,
+    "xterm": false
 }
