@@ -1,6 +1,6 @@
 {
     "Alt-/":          "lua:comment.comment",
-    "CtrlJ":          "command-edit:goto ",
+    "CtrlJ":          "JumpLine",
     "CtrlSpace":      "CommandMode",
     "CtrlU":          "Undo",
     "CtrlY":          "Redo",
