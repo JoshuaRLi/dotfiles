@@ -6,7 +6,7 @@ alias sqlite3="sqlite3 -init ${XDG_CONFIG_HOME}/sqlite3/sqliterc"
 
 alias c='tput reset'
 alias ..='cd ..'
-alias ls='ls -F --color=always'
+alias ls='ls -F --color=always -v'
 alias l='ls -lph'
 alias ll='ls -Alph'
 alias llt='ll -rt'
