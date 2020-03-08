@@ -48,8 +48,7 @@ fi
 
 # see also ~/.gitconfig
 alias gaa='git add --all'
-alias gc='git clone'
-alias gcm='git commit -S'
+alias gc='git commit'
 alias gd='git d'
 alias gdc='git dc'
 alias gl='git l'
