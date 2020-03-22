@@ -5,13 +5,7 @@ super + Escape
     notify-send "[bspwm] config reloaded" -t 1000
 
 ctrl + Return
-    alacritty
-
-shift + Return
-    bspwm-draw-alacritty cava
-
-ctrl + shift + Return
-    bspwm-draw-alacritty
+    alacritty-bin
 
 super + Return
 #    . "${XDG_CONFIG_HOME}/dotfiles/colors/colors.sh" && \

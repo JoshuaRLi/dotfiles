@@ -8,9 +8,9 @@ exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
 exec mako
 bindsym $mod+space exec makoctl dismiss
 
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec alacritty-bin
 # TODO: could possibly just use echo -n "cmd: "; read cmd; ... exec $cmd
-bindsym Shift+Return exec alacritty --class=launcher -e 'zsh -c "whence -pm \* | fzy | xargs -r swaymsg -t command exec"'
+bindsym Shift+Return exec alacritty-bin --class=launcher -e 'zsh -c "whence -pm \* | fzy | xargs -r swaymsg -t command exec"'
 for_window [app_id="^launcher$"] floating enable
 
 # TODO: text-based wayland locker, sort of like physlock, and also the ability to lock all ttys would be nice
