@@ -23,7 +23,7 @@ pathprepend             \
 export PATH
 
 export PAGER='less'
-export LESS='-irS'
+export LESS='FSXR'
 if df_require micro; then
     export EDITOR='micro'
 else
