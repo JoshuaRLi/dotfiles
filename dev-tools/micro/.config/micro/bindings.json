@@ -1,4 +1,5 @@
 {
+    "Tab": "IndentSelection|InsertTab",
     "Alt-/":          "lua:comment.comment",
     "CtrlJ":          "JumpLine",
     "CtrlSpace":      "CommandMode",
