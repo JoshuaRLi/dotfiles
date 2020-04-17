@@ -18,6 +18,7 @@ fi
 # let distribution take care of system PATH e.g. /usr/local/bin
 pathprepend             \
     ${HOME}/bin         \
+    ${HOME}/bin/misc    \
     ${HOME}/.local/bin
 
 export PATH
