@@ -1,19 +1,14 @@
 #!/usr/bin/env sh
 
-die () { printf %s\\n "$1"; exit 1; }
-
-command -v sym > /dev/null 2>&1 || die 'sym (https://github.com/joshuarli/sym-prototype) is required.'
-
 usage () {
     cat <<EOF
 USAGE: $0 PRESET [d]
 
 PRESETS:
-base        - base (includes ~/.profile)
 dd          - daily driver (arch linux)
 dd2         - daily driver v2 (gentoo linux)
 tatami      - tatami (alpine linux)
-work        - configs for work [currently: n/a]
+work        - configs for work [currently: sentry.io]
 
 Pass 'd' as the second argument if you want to unlink the dotfiles
 belonging to the specified preset.
@@ -21,14 +16,12 @@ EOF
     exit 1
 }
 
-sym="sym -v"
-[ "$2" = 'd' ] && sym="sym -vd"
+sym="${HOME}/bin/sym -v"
+[ "$2" = 'd' ] && sym="${HOME}/bin/sym -vd"
 
 # TODO: when sym supports --ignore: --ignore='README\.md' --ignore='LICENSE'
 
 case "$1" in
-base)
-    $sym base ;;
 dd)
     $sym \
         base                    \
