@@ -17,7 +17,7 @@ bindkey '\e[1;5C'  forward-word             # ctrl+right
 bindkey '\e[3~'  kill-whole-line            # del
 
 # completion
-[ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir "${XDG_CACHE_HOME}/zsh"
+[ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir -p "${XDG_CACHE_HOME}/zsh"
 autoload -Uz compinit && compinit -d "${XDG_CACHE_HOME}/zsh/zcompdump"
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' special-dirs false
@@ -45,7 +45,7 @@ bindkey '^ ' magic-space            # control-space to bypass completion
 bindkey -M isearch ' ' magic-space  # normal space during history searches
 
 # history
-[ ! -d "${XDG_DATA_HOME}/zsh" ] && mkdir "${XDG_DATA_HOME}/zsh"
+[ ! -d "${XDG_DATA_HOME}/zsh" ] && mkdir -p "${XDG_DATA_HOME}/zsh"
 export HISTFILE="${XDG_DATA_HOME}/zsh/history"
 export HISTSIZE=1000000
 export SAVEHIST="$HISTSIZE"
