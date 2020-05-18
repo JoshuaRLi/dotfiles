@@ -1,7 +1,3 @@
 export GOPATH="${XDG_DATA_HOME}/go"
 pathprepend "${GOPATH}/bin"
 export PATH
-
-gocd () {
-    cd "${GOPATH}/src/github.com/joshuarli/${1}"
-}
