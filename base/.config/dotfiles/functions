@@ -15,6 +15,12 @@ require () {
     df_require "$1" || die "${1} is required, but not found"
 }
 
+gitroot () {
+    require git || return $?
+
+    cd "$(git rev-parse --show-toplevel)"
+}
+
 lanip () {
     require ip || return $?
     usage $# 1 'Displays the LAN ip assigned to interface IFACE.' \
