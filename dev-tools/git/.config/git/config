@@ -23,13 +23,18 @@
     l = log --date=short --pretty='format:%h %ad (%an)%d %s'
     unstage = reset --
 
+[pager]
+    log = less
+    diff = ydiff | less
+    show = ydiff | less
+
+[color]
+    status = always
+    diff = never  # disable colors for ydiff and patch generation
+
 [push]
     default = current
     followTags = false
 
 [branch]
     autoSetupMerge = always
-
-[color]
-    status = always
-    diff = never  # disable colors for ydiff and patch generation

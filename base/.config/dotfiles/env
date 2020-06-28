@@ -31,11 +31,6 @@ else
     export EDITOR='nano'
 fi
 export GIT_EDITOR="$EDITOR"
-if df_require ydiff-bin; then
-    export GIT_PAGER="ydiff-bin | less"
-else
-    export GIT_PAGER="$PAGER"
-fi
 export GPG_TTY="$(tty)"
 
 # xdg
