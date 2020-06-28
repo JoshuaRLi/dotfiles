@@ -8,12 +8,12 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.{html,css,js,json,yml,scss,yaml}]
+[*.{html,css,js,json,yml,scss,yaml,tf,mdx,sls}]
 indent_size = 2
 
 [{*.c,Makefile,*.go}]
 indent_style = tab
 
-[{*.md,*.rst,LICENSE,VERSION}]
+[{*.{md,mdx,rst},LICENSE,VERSION}]
 insert_final_newline = false
 trim_trailing_whitespace = false
