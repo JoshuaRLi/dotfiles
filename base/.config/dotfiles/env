@@ -31,7 +31,7 @@ else
     export EDITOR='nano'
 fi
 export GIT_EDITOR="$EDITOR"
-export GPG_TTY="$(tty)"
+unset GIT_PAGER
 
 # xdg
 export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
