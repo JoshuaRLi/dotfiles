@@ -2,18 +2,14 @@ root = true
 
 [*]
 indent_style = space
-indent_size = 4
+indent_size = 2
 charset = utf-8
 end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.{html,css,js,json,yml,scss,yaml,tf,mdx,sls}]
-indent_size = 2
+[*.{py,rs}]
+indent_size = 4
 
-[{*.c,Makefile,*.go}]
+[{Makefile,*.c,*.go}]
 indent_style = tab
-
-[{*.{md,mdx,rst},LICENSE,VERSION}]
-insert_final_newline = false
-trim_trailing_whitespace = false
