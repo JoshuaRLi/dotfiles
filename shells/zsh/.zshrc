@@ -44,6 +44,14 @@ bindkey ' ' globalias
 bindkey '^ ' magic-space            # control-space to bypass completion
 bindkey -M isearch ' ' magic-space  # normal space during history searches
 
+# calculator
+calc () {
+    bindkey ' ' self-insert
+    autoload -Uz zcalc && zcalc
+    bindkey ' ' globalias
+}
+alias bc=calc
+
 # history
 [ ! -d "${XDG_DATA_HOME}/zsh" ] && mkdir -p "${XDG_DATA_HOME}/zsh"
 export HISTFILE="${XDG_DATA_HOME}/zsh/history"
