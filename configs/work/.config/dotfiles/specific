@@ -1,0 +1,10 @@
+# macos libexec path_helper is messing up my PATH, lol...
+if [ -d "${XDG_CONFIG_HOME}/dotfiles/dev" ]; then
+    for f in "${XDG_CONFIG_HOME}/dotfiles/dev/"*; do
+        . "$f"
+    done
+fi
+
+. "${HOME}/google-cloud-sdk/path.zsh.inc"
+
+alias ssh="TERM=xterm-256color ssh"
