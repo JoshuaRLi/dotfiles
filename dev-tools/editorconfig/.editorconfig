@@ -13,3 +13,4 @@ indent_size = 4
 
 [{Makefile,*.c,*.go}]
 indent_style = tab
+indent_size = 4
