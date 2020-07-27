@@ -30,6 +30,7 @@ fi
 alias df='df -x tmpfs -x devtmpfs -h -T'
 
 # fd: find hidden files, excluding .git/ but including gitignored files
+# By the way, smart case is the default here which is quite nice.
 if df_require fd; then
     alias fdh="fd --no-ignore-vcs -H -E '.git/'"
 fi
@@ -39,7 +40,8 @@ fi
 # AFAIK neither posix grep, gnu grep, nor git grep scratch this itch quite as elegantly as ripgrep does
 # NOTE: add -l to list filenames only then | xargs $EDITOR
 if df_require rg; then
-    alias rgh="rg --hidden -g '!.git'"
+    alias rg="rg -S"
+    alias rgh="rg --hidden -S -g '!.git'"
 fi
 
 if df_require fping; then
