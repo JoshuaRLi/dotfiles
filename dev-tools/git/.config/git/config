@@ -38,3 +38,9 @@
 
 [branch]
     autoSetupMerge = always
+
+[pull]
+    rebase = true
+
+[rebase]
+    autoStash = true
