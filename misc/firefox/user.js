@@ -1,12 +1,6 @@
-// current: firefox 67.0.1 from arch linux repositories
+// Some options might be outdated, I don't know how to programmatically validate them.
 
-// resources
-//  - https://spyware.neocities.org/guides/firefox.html
-//  - https://github.com/pyllyukko/user.js/
-// although i'd love to have some comprehensible, easily-searched, audited, and updateable documentation on user.js options
-// append-only is getting pretty tiring, probably 10% of this stuff is outdated
-
-// note: some people like to disable this stuff but i don't
+// Note: some people like to disable this stuff but i don't:
 //    - cookies, history, bookmarks, session restore
 //    - (most) caching
 //    - firefox sync, screenshots
@@ -14,30 +8,27 @@
 //    - wasm
 //    - clipboard
 //    - indexeddb (required by ublock)
+//    - pdfjs, webgl
 //    - svg rendering
 //    - protocol handler whitelist
 
 // reverted due to breakage
-user_pref("dom.storage.enabled", true);  // DOM storage used by supercookies, but this was breaking Standard Notes
-user_pref("dom.event.clipboardevents.enabled", true);  // breaks google docs + fb messenger "could not display composer"
-user_pref("network.http.sendRefererHeader", 2);  // 0 or 1 breaks a lot of sites, like bandcamp/twitter/pixiv
+user_pref("dom.storage.enabled", true);                 // DOM storage used by supercookies, but this was breaking Standard Notes
+user_pref("dom.event.clipboardevents.enabled", true);   // breaks google docs + fb messenger "could not display composer"
+user_pref("network.http.sendRefererHeader", 2);         // 0 or 1 breaks a lot of sites, like bandcamp/twitter/pixiv
 
-// the following options are delegated to umatrix
-// user_pref("privacy.firstparty.isolate", true);
+// Under X, run firefox >= 80 with MOZ_X11_EGL=1 and MOZ_WEBRENDER=1
+user_pref("media.ffmpeg.vaapi.enabled", true);
+user_pref("media.ffvpx.enabled", false);
+user_pref("gfx.webrender.all", true);
 
 // perf: disable smooth scroll, which eats a non-trivial amount of CPU,
 // especially if OpenGL OMTC is enabled via layers.acceleration.force-enabled
 user_pref("general.smoothScroll", false);
-
-// perf: explicitly force hardware acceleration
 user_pref("layers.acceleration.force-enabled", true);
 
 // perf: disable service workers, i have no need for them
 user_pref("dom.serviceWorkers.enabled", false);
-
-// perf: disable remote fonts (use only system fonts)
-user_pref("gfx.downloadable_fonts.enabled", false);
-user_pref("browser.display.use_document_fonts", 0);
 
 // perf: disable UI animations
 user_pref("toolkit.cosmeticAnimations.enabled", false);
@@ -48,8 +39,6 @@ user_pref("media.autoplay.default", 1);
 user_pref("image.animation_mode", "none");
 
 // security: disable various technologies
-user_pref("webgl.disabled", true);
-user_pref("pdfjs.disabled", true);
 user_pref("media.peerconnection.enabled", false);  // webrtc
 user_pref("plugin.state.flash",	0);
 user_pref("plugin.state.java", 1);
@@ -57,7 +46,6 @@ user_pref("media.webspeech.recognition.enable", false);
 user_pref("media.webspeech.synth.enabled", false);
 user_pref("dom.vr.enabled", false);
 user_pref("camera.control.face_detection.enabled", false);
-user_pref("javascript.options.asmjs",	false);  // until asm.js spec is stable
 
 // privacy: cripple geolocation
 user_pref("geo.enabled", false);
@@ -94,11 +82,6 @@ user_pref("privacy.trackingprotection.cryptomining.enabled", true);
 // security: mixed content blocking
 user_pref("security.mixed_content.block_active_content", true);
 user_pref("security.mixed_content.block_display_content",	true);
-
-// privacy: localization overrides
-user_pref("intl.locale.matchOS", false);
-user_pref("intl.accept_languages", "en-US, en");
-user_pref("javascript.use_us_english_locale", true);
 
 // privacy / perf: dumb down bar
 user_pref("browser.fixup.alternate.enabled", false);
@@ -146,41 +129,6 @@ user_pref("app.normandy.enabled", false);
 user_pref("app.shield.optoutstudies.enabled", false);
 user_pref("extensions.shield-recipe-client.api_url", "");
 user_pref("extensions.shield-recipe-client.enabled", false);
-
-// privacy + perf: disable google safebrowsing, i know what i'm doing
-user_pref("browser.safebrowsing.malware.enabled", false);
-user_pref("browser.safebrowsing.phishing.enabled", false);
-user_pref("browser.safebrowsing.downloads.enabled", false);
-user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
-user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
-user_pref("browser.safebrowsing.downloads.remote.block_dangerous", false);
-user_pref("browser.safebrowsing.downloads.remote.block_dangerous_host", false);
-user_pref("browser.safebrowsing.provider.google.updateURL", "");
-user_pref("browser.safebrowsing.provider.google.gethashURL", "");
-user_pref("browser.safebrowsing.provider.google4.updateURL", "");
-user_pref("browser.safebrowsing.provider.google4.gethashURL", "");
-user_pref("browser.safebrowsing.downloads.remote.enabled", false);
-user_pref("browser.safebrowsing.downloads.remote.url", "");
-user_pref("browser.safebrowsing.provider.google.reportURL", "");
-user_pref("browser.safebrowsing.reportPhishURL", "");
-user_pref("browser.safebrowsing.provider.google4.reportURL", "");
-user_pref("browser.safebrowsing.provider.google.reportMalwareMistakeURL", "");
-user_pref("browser.safebrowsing.provider.google.reportPhishMistakeURL", "");
-user_pref("browser.safebrowsing.provider.google4.reportMalwareMistakeURL", "");
-user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", "");
-user_pref("browser.safebrowsing.allowOverride", false);
-user_pref("browser.safebrowsing.provider.google4.dataSharing.enabled", false);
-user_pref("browser.safebrowsing.provider.google4.dataSharingURL", "");
-user_pref("browser.safebrowsing.blockedURIs.enabled", false);
-user_pref("browser.safebrowsing.provider.mozilla.gethashURL", "");
-user_pref("browser.safebrowsing.provider.mozilla.updateURL", "");
-user_pref("browser.safebrowsing.blockedURIs.enabled", false);
-user_pref("browser.safebrowsing.downloads.enabled", false);
-user_pref("browser.safebrowsing.downloads.remote.enabled", false);
-user_pref("browser.safebrowsing.downloads.remote.url", "");
-user_pref("browser.safebrowsing.enabled", false);
-user_pref("browser.safebrowsing.malware.enabled", false);
-user_pref("browser.safebrowsing.phishing.enabled", false);
 
 // perf: blank out new tab page
 user_pref("browser.startup.homepage", "about:blank");
@@ -274,7 +222,7 @@ user_pref("devtools.debugger.remote-enabled", false);
 user_pref("devtools.chrome.enabled", false);
 user_pref("devtools.debugger.force-local", true);
 
-// misc. explicit preferences
+// misc.
 user_pref("browser.startup.page", 3);  // previous-session-tabs are restored on launch
 user_pref("services.sync.engine.passwords", false);
 user_pref("services.sync.declinedEngines", "passwords,addresses");
@@ -288,105 +236,8 @@ user_pref("extensions.formautofill.available", "off");
 user_pref("extensions.formautofill.creditCards.enabled", false);
 user_pref("extensions.formautofill.heuristics.enabled", false);
 user_pref("browser.download.manager.retention",	0);  // disable download history
-
-// misc.
 user_pref("media.gmp-widevinecdm.enabled", false);  // do not play DRM-controlled html5 content
 user_pref("dom.mozTCPSocket.enabled", false);
 user_pref("network.jar.open-unsafe-types", false);
 user_pref("network.dns.blockDotOnion", true);
 user_pref("browser.offline-apps.notify", true);
-
-// ciphers stolen from pyllyukko/user.js, thanks!
-
-// PREF: Disable null ciphers
-user_pref("security.ssl3.rsa_null_sha",				false);
-user_pref("security.ssl3.rsa_null_md5",				false);
-user_pref("security.ssl3.ecdhe_rsa_null_sha",			false);
-user_pref("security.ssl3.ecdhe_ecdsa_null_sha",			false);
-user_pref("security.ssl3.ecdh_rsa_null_sha",			false);
-user_pref("security.ssl3.ecdh_ecdsa_null_sha",			false);
-
-// PREF: Disable SEED cipher
-// https://en.wikipedia.org/wiki/SEED
-user_pref("security.ssl3.rsa_seed_sha",				false);
-
-// PREF: Disable 40/56/128-bit ciphers
-// 40-bit ciphers
-user_pref("security.ssl3.rsa_rc4_40_md5",			false);
-user_pref("security.ssl3.rsa_rc2_40_md5",			false);
-// 56-bit ciphers
-user_pref("security.ssl3.rsa_1024_rc4_56_sha",			false);
-// 128-bit ciphers
-user_pref("security.ssl3.rsa_camellia_128_sha",			false);
-user_pref("security.ssl3.ecdhe_rsa_aes_128_sha",		false);
-user_pref("security.ssl3.ecdhe_ecdsa_aes_128_sha",		false);
-user_pref("security.ssl3.ecdh_rsa_aes_128_sha",			false);
-user_pref("security.ssl3.ecdh_ecdsa_aes_128_sha",		false);
-user_pref("security.ssl3.dhe_rsa_camellia_128_sha",		false);
-user_pref("security.ssl3.dhe_rsa_aes_128_sha",			false);
-
-// PREF: Disable RC4
-// https://developer.mozilla.org/en-US/Firefox/Releases/38#Security
-// https://bugzilla.mozilla.org/show_bug.cgi?id=1138882
-// https://rc4.io/
-// https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2013-2566
-user_pref("security.ssl3.ecdh_ecdsa_rc4_128_sha",		false);
-user_pref("security.ssl3.ecdh_rsa_rc4_128_sha",			false);
-user_pref("security.ssl3.ecdhe_ecdsa_rc4_128_sha",		false);
-user_pref("security.ssl3.ecdhe_rsa_rc4_128_sha",		false);
-user_pref("security.ssl3.rsa_rc4_128_md5",			false);
-user_pref("security.ssl3.rsa_rc4_128_sha",			false);
-user_pref("security.tls.unrestricted_rc4_fallback",		false);
-
-// PREF: Disable 3DES (effective key size is < 128)
-// https://en.wikipedia.org/wiki/3des#Security
-// http://en.citizendium.org/wiki/Meet-in-the-middle_attack
-// http://www-archive.mozilla.org/projects/security/pki/nss/ssl/fips-ssl-ciphersuites.html
-user_pref("security.ssl3.dhe_dss_des_ede3_sha",			false);
-user_pref("security.ssl3.dhe_rsa_des_ede3_sha",			false);
-user_pref("security.ssl3.ecdh_ecdsa_des_ede3_sha",		false);
-user_pref("security.ssl3.ecdh_rsa_des_ede3_sha",		false);
-user_pref("security.ssl3.ecdhe_ecdsa_des_ede3_sha",		false);
-user_pref("security.ssl3.ecdhe_rsa_des_ede3_sha",		false);
-user_pref("security.ssl3.rsa_des_ede3_sha",			false);
-user_pref("security.ssl3.rsa_fips_des_ede3_sha",		false);
-
-// PREF: Disable ciphers with ECDH (non-ephemeral)
-user_pref("security.ssl3.ecdh_rsa_aes_256_sha",			false);
-user_pref("security.ssl3.ecdh_ecdsa_aes_256_sha",		false);
-
-// PREF: Disable 256 bits ciphers without PFS
-user_pref("security.ssl3.rsa_camellia_256_sha",			false);
-
-// PREF: Enable ciphers with ECDHE and key size > 128bits
-user_pref("security.ssl3.ecdhe_rsa_aes_256_sha",		true); // 0xc014
-user_pref("security.ssl3.ecdhe_ecdsa_aes_256_sha",		true); // 0xc00a
-
-// PREF: Enable GCM ciphers (TLSv1.2 only)
-// https://en.wikipedia.org/wiki/Galois/Counter_Mode
-user_pref("security.ssl3.ecdhe_ecdsa_aes_128_gcm_sha256",	true); // 0xc02b
-user_pref("security.ssl3.ecdhe_rsa_aes_128_gcm_sha256",		true); // 0xc02f
-
-// PREF: Enable ChaCha20 and Poly1305 (Firefox >= 47)
-// https://www.mozilla.org/en-US/firefox/47.0/releasenotes/
-// https://tools.ietf.org/html/rfc7905
-// https://bugzilla.mozilla.org/show_bug.cgi?id=917571
-// https://bugzilla.mozilla.org/show_bug.cgi?id=1247860
-// https://cr.yp.to/chacha.html
-user_pref("security.ssl3.ecdhe_ecdsa_chacha20_poly1305_sha256",	true);
-user_pref("security.ssl3.ecdhe_rsa_chacha20_poly1305_sha256",	true);
-
-// PREF: Disable ciphers susceptible to the logjam attack
-// https://weakdh.org/
-user_pref("security.ssl3.dhe_rsa_camellia_256_sha",		false);
-user_pref("security.ssl3.dhe_rsa_aes_256_sha",			false);
-
-// PREF: Disable ciphers with DSA (max 1024 bits)
-user_pref("security.ssl3.dhe_dss_aes_128_sha",			false);
-user_pref("security.ssl3.dhe_dss_aes_256_sha",			false);
-user_pref("security.ssl3.dhe_dss_camellia_128_sha",		false);
-user_pref("security.ssl3.dhe_dss_camellia_256_sha",		false);
-
-// PREF: Fallbacks due compatibility reasons
-user_pref("security.ssl3.rsa_aes_256_sha",			true); // 0x35
-user_pref("security.ssl3.rsa_aes_128_sha",			true); // 0x2f
