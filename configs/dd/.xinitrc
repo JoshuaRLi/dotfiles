@@ -1,4 +1,9 @@
-#!/bin/bash
+#!/bin/sh
+
+set -e
+
+# Starts daemonized pulseaudio idempotently.
+pulseaudio --start
 
 sxhkd &
 

@@ -1,8 +1,0 @@
-#!/bin/sh
-
-mkdir -p "${XDG_DATA_HOME}/firejail/chromium"
-
-firejail \
-    --profile=/etc/firejail/chromium.profile \
-    --private="${XDG_DATA_HOME}/firejail/chromium" \
-    chromium

@@ -8,11 +8,7 @@ ctrl + Return
     alacritty-bin
 
 super + Return
-#    . "${XDG_CONFIG_HOME}/dotfiles/colors/colors.sh" && \
     bemenu-run -b --fn 'Hack 11' -p '>' --nb "#000000"
-
-ctrl + alt + Delete
-    systemctl suspend
 
 Print
     mkdir -p "${HOME}/Screenshots" && \
@@ -28,19 +24,20 @@ alt + Print
     maim -s --quality 10 | xclip -selection clipboard -t image/png && \
         notify-send "[maim] Screenshot selection saved to clipboard buffer." -t 1000
 
-ctrl + Print
-    notify-send "grabc: $(grabc)" -t 5000
+# Get the color of a pixel on an X window.
+#ctrl + Print
+#    notify-send "grabc: $(grabc)" -t 5000
 
-XF86AudioMute
-    # note: to only toggle pulseaudio, pass -D pulse
-    amixer set Master toggle
+#XF86AudioMute
+#    # note: to only toggle pulseaudio, pass -D pulse
+#    amixer set Master toggle
 
-XF86Audio{LowerVolume,RaiseVolume}
-    amixer set Master 5%{-,+}
+#XF86Audio{LowerVolume,RaiseVolume}
+#    amixer set Master 5%{-,+}
 
-XF86MonBrightness{Down,Up}
-    light -{U,A} 10
-    # xbacklight -{dec,inc} 10
+#XF86MonBrightness{Down,Up}
+#    light -{U,A} 10
+#    # xbacklight -{dec,inc} 10
 
 
 # BSPWM

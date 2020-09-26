@@ -21,9 +21,6 @@ sym="${HOME}/bin/sym -v"
 
 # TODO: when sym supports --ignore: --ignore='README\.md' --ignore='LICENSE'
 
-# TODO: shims need additional symlink? or just move em up
-# TODO: uf should go into misc
-
 case "$1" in
 dd)
     $sym \
