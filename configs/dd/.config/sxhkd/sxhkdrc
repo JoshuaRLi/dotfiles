@@ -9,7 +9,7 @@ ctrl + Return
 
 super + Return
 #    . "${XDG_CONFIG_HOME}/dotfiles/colors/colors.sh" && \
-    bemenu-run -b --fn 'Hack 15' -p '>' --nb "#000000"
+    bemenu-run -b --fn 'Hack 11' -p '>' --nb "#000000"
 
 ctrl + alt + Delete
     systemctl suspend

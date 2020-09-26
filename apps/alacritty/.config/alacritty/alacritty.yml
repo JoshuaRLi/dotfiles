@@ -12,7 +12,7 @@ font:
     family: Hack
   bold:
     family: Hack
-  size: 7
+  size: 8
 
 live_config_reload: false
 
