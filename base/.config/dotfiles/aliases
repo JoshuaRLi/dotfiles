@@ -61,10 +61,10 @@ gr () {
 alias grv='git remote -v'
 alias gs='git status -sb -uall'
 gsts () {
-    git stash show -p "stash@{${1:-1}}" | git-ydiff -s -w0 --wrap
+    git stash show -p "stash@{${1:-1}}"
 }
 gsta () {
-    git stash apply "stash@{${1:-1}}" | git-ydiff -s -w0 --wrap
+    git stash apply "stash@{${1:-1}}"
 }
 
 alias tl='tmux ls'

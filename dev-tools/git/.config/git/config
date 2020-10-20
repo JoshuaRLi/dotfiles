@@ -11,7 +11,29 @@
 
 [core]
     autocrlf = input
-    compression = 9
+    pager = delta
+
+[diff]
+    colorMoved = default
+
+[delta]
+    features = side-by-side line-numbers decorations
+    syntax-theme = none
+    # Too many colors is distracting.
+    # syntax-theme = Dracula
+    plus-style = green
+    plus-emph-style = green bold
+    minus-style = red
+    minus-emph-style = red bold
+    line-numbers-left-format  = {nm:^4}
+    line-numbers-right-format = {np:^4}
+
+[delta "decorations"]
+    file-style = magenta bold
+    commit-decoration-style = none
+    file-decoration-style = white box
+    hunk-header-style = none
+    hunk-header-decoration-style = white ul
 
 [alias]
     amend = commit --amend -v
@@ -22,15 +44,6 @@
     s = show
     l = log --pretty='format:%h %cs (%an)%d %s'
     unstage = reset --
-
-[pager]
-    log = less
-    diff = ydiff | less
-    show = ydiff | less
-
-[color]
-    status = always
-    diff = never  # disable colors for ydiff and patch generation
 
 [push]
     default = current
