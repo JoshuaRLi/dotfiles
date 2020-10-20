@@ -20,7 +20,7 @@
     d = diff
     dc = diff --cached
     s = show
-    l = log --date=short --pretty='format:%h %ad (%an)%d %s'
+    l = log --pretty='format:%h %cs (%an)%d %s'
     unstage = reset --
 
 [pager]
