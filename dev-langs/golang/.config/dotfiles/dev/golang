@@ -1,3 +1,5 @@
 export GOPATH="${XDG_DATA_HOME}/go"
 pathprepend "${GOPATH}/bin"
+
+pathprepend "${HOME}/bin/misc/go/bin"
 export PATH
