@@ -5,16 +5,6 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"
 
-# note: usually, *nix distributions set runtime dir - probably a systemd thing
-# openrc doesn't, so alpine and gentoo linux (pure openrc; no consolekit) need this bootstrapped here for software that does need it
-# e.g. swaywm
-if [ -z "$XDG_RUNTIME_DIR" ]; then
-    XDG_RUNTIME_DIR="/tmp/${UID}-runtime-dir"
-    mkdir -p "$XDG_RUNTIME_DIR"
-    chmod 0700 "$XDG_RUNTIME_DIR"
-    export XDG_RUNTIME_DIR
-fi
-
 # let distribution take care of system PATH e.g. /usr/local/bin
 pathprepend             \
     ${HOME}/bin         \
@@ -40,7 +30,6 @@ export LESSHISTFILE="${XDG_DATA_HOME}/less_history"
 df_require adb && export ANDROID_SDK_HOME="${XDG_CONFIG_HOME}/android"
 df_require sqlite3 && export SQLITE_HISTORY="${XDG_DATA_HOME}/sqlite_history"
 df_require gpg && export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
-df_require pass && export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/password-store"
 
 # tweaks
 # su=00:sg=00:ca=00 don't colorize setuid/gid or filecaps to avoid expensive syscalls

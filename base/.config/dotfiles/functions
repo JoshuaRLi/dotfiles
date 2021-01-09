@@ -80,7 +80,7 @@ mdl () {
     usage $# 1 'youtube-dl + ffmpeg (opus 96k reencode) music downloader' \
         "$0 music-url" || return $?
 
-    youtube-dl --ignore-config --no-playlist \
+    youtube-dl --ignore-config --ignore-errors \
         -x --audio-format best \
         --postprocessor-args '-c:a libopus -b:a 96K' \
         --add-metadata \
@@ -89,13 +89,11 @@ mdl () {
 
 vdl () {
     require youtube-dl || return $?
-    require ffmpeg || return $?
-    usage $# 1 'youtube-dl + ffmpeg (hevc fast crf 30, opus 96k reencode into mkv) video downloader' \
+    usage $# 1 'youtube-dl (capped at 720p) video downloader' \
         "$0 music-url" || return $?
 
-    youtube-dl --ignore-config --no-playlist \
-        -f bestvideo+bestaudio \
-        --postprocessor-args '-c:v hevc -preset fast -crf 30 -c:a libopus -b:a 96K' \
+    youtube-dl --ignore-config --ignore-errors \
+        -f 'bestvideo[height<=720]+bestaudio/best[height<=720]' \
         --add-metadata \
         --merge-output-format mkv \
         -o "%(title)s [%(id)s].%(ext)s" "$1"

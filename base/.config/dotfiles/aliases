@@ -7,13 +7,12 @@ alias sqlite3="sqlite3 -init ${XDG_CONFIG_HOME}/sqlite3/sqliterc"
 alias c='tput reset'
 alias ..='cd ..'
 alias ls='ls -F --color=always -v'
-alias l='ls -lph'
-alias ll='ls -Alph'
+alias l='ls -p'
+alias ll='ls -plAhG'
 alias llt='ll -rt'
 alias treea='tree -aI .git'
 alias e="$EDITOR"
 alias rd='rmdir'
-alias badlinks='find . -xtype l'
 alias lsblk='lsblk --output=NAME,MOUNTPOINT,TYPE,FSTYPE,LABEL,PARTLABEL,SIZE,UUID'
 psi () {
     [ -n "$1" ] && ps wup $(pgrep -f "$1")
@@ -27,22 +26,16 @@ else
     alias du='du -skh .??* * | sort -rh'
 fi
 
-alias df='df -x tmpfs -x devtmpfs -h -T'
-
 # fd: find hidden files, excluding .git/ but including gitignored files
 # By the way, smart case is the default here which is quite nice.
-if df_require fd; then
-    alias fdh="fd --no-ignore-vcs -H -E '.git/'"
-fi
+alias fdh="fd --no-ignore-vcs -H -E '.git/'"
 
 # rgh: grep through hidden files, excluding .git/ but including gitignored files
 # (rg's default behavior is to ignore vcs ignore)
 # AFAIK neither posix grep, gnu grep, nor git grep scratch this itch quite as elegantly as ripgrep does
 # NOTE: add -l to list filenames only then | xargs $EDITOR
-if df_require rg; then
-    alias rg="rg -S"
-    alias rgh="rg --hidden -S -g '!.git'"
-fi
+alias rg="rg -S"
+alias rgh="rg --hidden -S -g '!.git'"
 
 if df_require fping; then
     alias ping="fping -p500 -l"
