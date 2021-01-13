@@ -9,6 +9,7 @@ dd          - daily driver (arch linux)
 dd2         - daily driver v2 (gentoo linux)
 tatami      - tatami (alpine linux)
 work        - configs for work [currently: sentry.io]
+debian      - dev environment on debian
 
 Pass 'd' as the second argument if you want to unlink the dotfiles
 belonging to the specified preset.
@@ -58,11 +59,18 @@ tatami)
 work)
     $sym \
         base                    \
-	os/osx			\
+        os/osx                  \
         configs/work            \
         shells/zsh              \
         apps/alacritty          \
         apps/mpv                \
+        dev-langs/*             \
+        dev-tools/* ;;
+debian)
+    $sym                        \
+        base                    \
+        os/debian               \
+        shells/zsh              \
         dev-langs/*             \
         dev-tools/* ;;
 *)
