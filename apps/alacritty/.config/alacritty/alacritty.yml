@@ -6,6 +6,7 @@ window:
   padding:
     x: 16
     y: 16
+  startup_mode: Fullscreen
 
 font:
   normal:
