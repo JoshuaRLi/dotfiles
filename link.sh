@@ -20,11 +20,11 @@ EOF
 sym="${HOME}/bin/sym -v"
 [ "$2" = 'd' ] && sym="${HOME}/bin/sym -vd"
 
-# TODO: when sym supports --ignore: --ignore='README\.md' --ignore='LICENSE'
-
 case "$1" in
 dd)
     $sym \
+        --exclude 'os/arch/packages' \
+        --exclude 'os/arch/etc/*'    \
         base                    \
         os/arch                 \
         configs/dd              \
@@ -33,7 +33,11 @@ dd)
         apps/mpv                \
         apps/feh                \
         dev-langs/*             \
-        dev-tools/* ;;
+        dev-tools/*
+    sudo $sym -t / \
+        --exclude 'os/arch/packages' \
+        os/arch
+        ;;
 dd2)
     $sym \
         base                    \
@@ -44,7 +48,7 @@ dd2)
         dev-langs/*             \
         dev-tools/*
 
-    sudo /home/josh/bin/$sym -t / \
+    sudo $sym -t / \
         os/gentoo-x230 ;;
 tatami)
     $sym \
