@@ -50,7 +50,7 @@ sshnew () {
 ecount () {
     require fd || return $?
 
-    fd -tf -x echo {/} | awk -F. 'NF > 1 {print tolower($NF)}' | sort | uniq -c | sort -n
+    fd -tf --color=never | awk -F. 'NF > 1 {print tolower($NF)}' | sort | uniq -c | sort -n
 }
 
 esize () {
