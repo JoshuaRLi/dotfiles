@@ -98,3 +98,36 @@ vdl () {
         --merge-output-format mkv \
         -o "%(title)s [%(id)s].%(ext)s" "$1"
 }
+
+optimize-jpg () {
+    require fd || return $?
+    require jpegoptim || return $?
+
+    tmp=$(mktemp)
+    fd -tf --color=never -0 \
+        -e jpg -e jpeg \
+        > $tmp
+    count=$(awk -vRS='\0' 'END{print NR}' < $tmp)
+    nproc=$(nproc)
+    # I think gnu parallel will not clobber output?
+    xargs -0 -t -P$nproc -n$(( 1 + (count / nproc) )) \
+        jpegoptim -m90 -s \
+        < $tmp
+    rm -f $tmp
+}
+
+optimize-png () {
+    require pngquant || return $?
+
+    tmp=$(mktemp)
+    fd -tf --color=never -0 \
+        -e png \
+        > $tmp
+    count=$(awk -vRS='\0' 'END{print NR}' < $tmp)
+    nproc=$(nproc)
+    # I think gnu parallel will not clobber output?
+    xargs -0 -t -P$nproc -n$(( 1 + (count / nproc) )) \
+        pngquant --skip-if-larger --quality=90 --strip --speed 1 --ext .png --force \
+        < $tmp
+    rm -f $tmp
+}
