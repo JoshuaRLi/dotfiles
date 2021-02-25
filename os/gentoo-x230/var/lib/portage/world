@@ -22,7 +22,6 @@ sys-boot/lilo
 sys-devel/binutils
 sys-devel/clang
 sys-fs/dfc
-sys-fs/ncdu
 sys-kernel/gentoo-sources
 sys-kernel/linux-firmware
 sys-power/acpi
