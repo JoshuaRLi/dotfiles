@@ -94,6 +94,7 @@ vdl () {
 
     youtube-dl --ignore-config --ignore-errors \
         -f 'bestvideo[height<=720]+bestaudio/best[height<=720]' \
+        --write-sub --sub-lang=en --sub-format=srt --convert-subs=srt \
         --add-metadata \
         --merge-output-format mkv \
         -o "%(title)s [%(id)s].%(ext)s" "$1"
